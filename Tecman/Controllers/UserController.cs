@@ -125,6 +125,25 @@ namespace Tecman.Controllers
 
         }
 
+        [HttpGet]
+        [Authorize("Bearer")]
+        [Route("Me")]
+        [Produces("application/json")]
+        [ProducesResponseType((200), Type = typeof(MeObject))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> Me()
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token"); // receive token from front
+
+            var auth = _token.GetCrendentials(accessToken); // decode token and get credentials
+
+            User user = _business.FindById(auth.nameid);
+
+            MeObject result = new MeObject(user.username, user.employee.name, user.employee.role.role, user.avatarUrl, user.employee.email);
+
+            return Ok(_response.ResponseApi(0, result));
+
+        }
 
         [HttpPut]
         [Authorize("Bearer")]
@@ -148,24 +167,6 @@ namespace Tecman.Controllers
         }
 
 
-        [HttpGet]
-        [Authorize("Bearer")]
-        [Route("Me")]
-        [Produces("application/json")]
-        [ProducesResponseType((200), Type = typeof(MeObject))]
-        [ProducesResponseType(401)]
-        public async Task<IActionResult> Me()
-        {
-            var accessToken = await HttpContext.GetTokenAsync("access_token"); // receive token from front
-
-            var auth = _token.GetCrendentials(accessToken); // decode token and get credentials
-
-            User user = _business.FindById(auth.nameid);
-
-            MeObject result = new MeObject(user.username, user.employee.name, user.employee.role.role, user.avatarUrl, user.employee.email);
-
-            return Ok(_response.ResponseApi(0, result));
-
-        }
+        
     }
 }
