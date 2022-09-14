@@ -18,7 +18,10 @@ namespace Tecman.Models
         
         [Column("senha")]
         public string? password { get; set; }
-     
+
+        [Column("avatar_url")]
+        public string? avatarUrl { get; set; }
+
         [Column("data_de_ativacao")]
         public DateTime? registrationDate { get; set; }
      
