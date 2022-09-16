@@ -105,6 +105,11 @@ namespace Tecman.Business.Implementation
             return _repository.FindRoleById(id);
         }
 
+        public List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String q)
+        {
+            return _repository.GetListEmployee(sortDirection, limit, offset, q);
+        }
+
         public bool UpdateAddressEmployee(Employee employee, AddressObject addressObject)
         {
             Address adress = _address.findById(employee.address.id);

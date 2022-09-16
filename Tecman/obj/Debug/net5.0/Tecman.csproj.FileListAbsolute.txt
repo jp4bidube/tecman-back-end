@@ -299,3 +299,5 @@ C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\obj\Debug\net5.0\Tecman.genru
 \\poseidon\temp\daniel.quintal\tecm\Codigo-Fonte\Tecman\obj\Debug\net5.0\Tecman.genruntimeconfig.cache
 C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\bin\Debug\net5.0\ref\Tecman.dll
 C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\obj\Debug\net5.0\staticwebassets\Tecman.StaticWebAssets.xml
+C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.DynamicLinq.dll
+C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll

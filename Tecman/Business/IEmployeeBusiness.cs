@@ -20,5 +20,6 @@ namespace Tecman.Business
 
         bool Create(EmployeeCreate employeeCreate);
 
+        List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String q);
     }
 }

@@ -18,6 +18,6 @@ namespace Tecman.Repository
         ApiMessage Update(Employee employee);
 
         Employee Create(Employee employee);
-
+        List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String q);
     }
 }

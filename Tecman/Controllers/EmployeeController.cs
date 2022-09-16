@@ -83,6 +83,21 @@ namespace Tecman.Controllers
 
         }
 
+        [HttpGet]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("page={offset}order={order}limit={limit}q={q}")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> Get(String order, int limit, int offset, String q)
+        {
+            List<Employee> employee = _business.GetListEmployee(order, limit, offset, q);
+
+            return Ok(_response.ResponseApi(0, employee));
+
+        }
+
         [HttpPatch]
         [Authorize("Bearer")]
         [Route("{id}/edit-address-employee")]

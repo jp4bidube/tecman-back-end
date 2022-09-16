@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EgvO75+K28vBHOx7yASm3d5poAeGCkqI7L7QUcJLjSIJHpKNmJ/KNQTDwR3WitdYyumnfQXy/tLllkFwqND1yQ==",
+  "dgSpecHash": "a2a5GRHoHGCp+JlgnMNpivPI0IUtGesGapzjU+ikkh60zllgELRot6fmZpX5/pLNXoTpLR4EXn7cD7Mf4OSIlg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Daniel\\Desktop\\TECMAN\\Codigo-Fonte\\Tecman\\Tecman.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.9\\microsoft.entityframeworkcore.abstractions.5.0.9.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.9\\microsoft.entityframeworkcore.analyzers.5.0.9.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.9\\microsoft.entityframeworkcore.design.5.0.9.nupkg.sha512",
+    "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore.dynamiclinq\\5.2.20\\microsoft.entityframeworkcore.dynamiclinq.5.2.20.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore.proxies\\5.0.9\\microsoft.entityframeworkcore.proxies.5.0.9.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.9\\microsoft.entityframeworkcore.relational.5.0.9.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
@@ -144,6 +145,7 @@
     "C:\\Users\\Daniel\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\Daniel\\.nuget\\packages\\system.linq.dynamic.core\\1.2.20\\system.linq.dynamic.core.1.2.20.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",

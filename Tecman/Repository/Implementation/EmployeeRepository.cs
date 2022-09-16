@@ -6,6 +6,7 @@ using Tecman.Models;
 using Tecman.Models.Context;
 using Tecman.Services;
 using Tecman.ValueObject;
+using System.Linq.Dynamic;
 
 namespace Tecman.Repository.Implementation
 {
@@ -48,6 +49,31 @@ namespace Tecman.Repository.Implementation
         public Role FindRoleById(int id)
         {
             return _context.Role.FirstOrDefault(element => element.id.Equals(id));
+        }
+
+        public List<Employee> GetListEmployee(String sortDirection , int limit, int offset, String q)
+        {
+
+
+            if (sortDirection == "desc")
+            {
+                List<Employee> employee = _context.Employee.Where(prop=> prop.cpf.ToUpper().Contains(q.ToUpper()) || prop.email.ToUpper().Contains(q.ToUpper()) || prop.name.ToUpper().Contains(q.ToUpper()) || prop.phoneNumber.ToUpper().Contains(q.ToUpper()))                    
+                    .Skip(offset)
+                    .Take(limit)
+                    .OrderByDescending(prop => prop.name)
+                    .ToList();
+                return employee;
+            }
+            else
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q.ToUpper()) || prop.email.ToUpper().Contains(q.ToUpper()) || prop.name.ToUpper().Contains(q.ToUpper()) || prop.phoneNumber.ToUpper().Contains(q.ToUpper()))
+                    .OrderBy(prop => prop.name)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return employee;
+            }
+            return _context.Employee.ToList();
         }
 
         public ApiMessage Update(Employee employee)
