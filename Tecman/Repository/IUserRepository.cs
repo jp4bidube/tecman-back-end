@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace Tecman.Repository
 {
@@ -13,14 +14,14 @@ namespace Tecman.Repository
         List<User> List();
         ApiMessage Create(User user);
         User FindByUsername(String username);
-        UserStatus FindUserStatusById(int id);
-        UserProfile FindUserProfileById(int id);
         User ValidateCredentials(UserCredentials user);
         User Find(int id);
         UserToken ValidateRefreshToken(string refreshToken);
         UserToken GetExpireAccessToken(int userId);
-
         ApiMessage Update(User user);
+        bool RevokeToken(string userName);
+
+        public object ComputeHash(string input, SHA256CryptoServiceProvider algotithm);
 
     }
 }

@@ -14,10 +14,10 @@ namespace Tecman.Business
         ApiMessage Create(UserCreate userCreate);
         TokenObject ValidateCredentials(UserCredentials userCredentials);
         public TokenObject ValidateCredentials(string refreshToken);
-
         User FindById(int id);
+        bool Update(UserUpdate userUpdate, User user);
+        bool RevokeToken(String username);
 
-        bool DisableUser(User user);
 
     }
 }

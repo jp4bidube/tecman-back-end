@@ -43,7 +43,15 @@ namespace Tecman.Models
         [Column("endereco_id")]
         [ForeignKey("endereco_id")]
 
-        public virtual Address address { get; set; }
+        public virtual Address? address { get; set; }
+
+        [Column("funcionario_status")]
+        [ForeignKey("funcionario_status_id")]
+
+        public virtual EmployeeStatus employeeStatus { get; set; }
+
+        [Column("avatar_url")]
+        public string? avatarUrl { get; set; }
 
 
     }

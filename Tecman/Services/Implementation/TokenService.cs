@@ -103,7 +103,6 @@ namespace Tecman.Services.Implementation
                     tokenType = tokenType1,
                     expirationDate = expirationDate,
                     dateOfUse = dateOfUser,
-                    user_token_id = user.id 
 
                 };
             }
@@ -129,6 +128,16 @@ namespace Tecman.Services.Implementation
             var jsonToken = handler.ReadToken(token); // Decode Token JwT in SecurityToken
             var tokenS = jsonToken as JwtSecurityToken; // Associate a SecurityToken in JwtSecurityToken
             return new JwtCredentials(tokenS.Payload["unique_name"].ToString(), Int32.Parse(tokenS.Payload["nameid"].ToString())); // Create a JwtCredentials with payload data of JwtSecurityToken
+        }
+
+        public UserToken GetUserTokenByUserIdAndTokenTypeId(int userId, int token)
+        {
+            return _repository.GetUserTokenByUserIdAndTokenTypeId(userId, token);
+        }
+
+        public TokenType GetTokenType(int id)
+        {
+            return _repository.GetTokenType(id);
         }
     }
 }

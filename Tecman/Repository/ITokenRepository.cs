@@ -22,5 +22,6 @@ namespace Tecman.Repository
         bool RevokeToken(UserToken userToken);
         bool Update(UserToken userToken);
         UserToken GetUserToken(int userId, string token);
+        UserToken GetUserTokenByUserIdAndTokenTypeId(int userId, int token);
     }
 }

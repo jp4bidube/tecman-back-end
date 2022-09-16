@@ -23,8 +23,7 @@ namespace Tecman.Models.Context
         public DbSet<UserToken> UserToken { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<TokenType> TokenType { get; set; }
-        public DbSet<UserProfile> UserProfile { get; set; }
-        public DbSet<UserStatus> UserStatus { get; set; }
+        public DbSet<EmployeeStatus> EmployeeStatus { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<Role> Role { get; set; }

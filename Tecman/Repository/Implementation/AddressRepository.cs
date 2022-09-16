@@ -9,56 +9,46 @@ using Tecman.ValueObject;
 
 namespace Tecman.Repository.Implementation
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class AddressRepository : IAddressRepository
     {
         private PostgreSqlDbContext _context;
         private IResponseApiService _response;
-        public EmployeeRepository(PostgreSqlDbContext context, IResponseApiService response)
+        public AddressRepository(PostgreSqlDbContext context, IResponseApiService response)
         {
             _response = response;
             _context = context;
         }
 
-        public Employee Create(Employee employee)
+        public Address Create(Address address)
         {
             try
             {
-                _context.Add(employee);
+                _context.Add(address);
                 _context.SaveChanges();
 
-                return employee;
+                return address;
             }
             catch (Exception e)
             {
                 return null;
 
-            }
+            };
         }
 
-        public Employee FindById(int id)
+        public Address findById(int id)
         {
-            return _context.Employee.FirstOrDefault(element => element.id.Equals(id));
+            return _context.Address.FirstOrDefault(element => element.id.Equals(id));
         }
 
-        public EmployeeStatus FindEmployeeStatusById(int id)
+        public ApiMessage Update(Address address)
         {
-            return _context.EmployeeStatus.FirstOrDefault(element => element.id.Equals(id));
-        }
-
-        public Role FindRoleById(int id)
-        {
-            return _context.Role.FirstOrDefault(element => element.id.Equals(id));
-        }
-
-        public ApiMessage Update(Employee employee)
-        {
-            var result = _context.Employee.SingleOrDefault(p => p.id.Equals(employee.id));
+            var result = _context.Address.SingleOrDefault(p => p.id.Equals(address.id));
 
             if (result != null)
             {
                 try
                 {
-                    _context.Entry(result).CurrentValues.SetValues(employee);
+                    _context.Entry(result).CurrentValues.SetValues(address);
                     _context.SaveChanges();
                 }
                 catch (Exception e)

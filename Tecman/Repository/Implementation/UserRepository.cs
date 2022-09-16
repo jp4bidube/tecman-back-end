@@ -40,21 +40,14 @@ namespace Tecman.Repository.Implementation
 
             }
         }
+        public bool RevokeToken(string userCorporateEmail)
+        {
+            throw new NotImplementedException();
+        }
 
         public User FindByUsername(string username)
         {
             return _context.User.FirstOrDefault(prop => (prop.username == username));
-        }
-
-        public UserProfile FindUserProfileById(int id)
-        {
-           return _context.UserProfile.FirstOrDefault(element => element.id.Equals(id));
-
-        }
-
-        public UserStatus FindUserStatusById(int id)
-        {
-            return _context.UserStatus.FirstOrDefault(element => element.id.Equals(id));
         }
 
         public List<User> List()
@@ -75,7 +68,7 @@ namespace Tecman.Repository.Implementation
 
         public UserToken ValidateRefreshToken(string refreshToken)
         {
-            return _context.Token.SingleOrDefault(prop => prop.token.Equals(refreshToken) && prop.tokenType.id.Equals(4));
+            return _context.Token.SingleOrDefault(prop => prop.token.Equals(refreshToken) && prop.tokenType.id.Equals(2));
         }
 
         /**
@@ -85,10 +78,10 @@ namespace Tecman.Repository.Implementation
         public UserToken GetExpireAccessToken(int userId)
         {
 
-            return _context.Token.SingleOrDefault(prop => prop.user.id.Equals(userId) && prop.tokenType.id.Equals(5));
+            return _context.Token.SingleOrDefault(prop => prop.user.id.Equals(userId) && prop.tokenType.id.Equals(1));
         }
 
-        private object ComputeHash(string input, SHA256CryptoServiceProvider algotithm)
+        public object ComputeHash(string input, SHA256CryptoServiceProvider algotithm)
         {
             byte[] inputBytes = Encoding.UTF8.GetBytes(input);
             byte[] hashedBytes = algotithm.ComputeHash(inputBytes);
@@ -99,6 +92,7 @@ namespace Tecman.Repository.Implementation
         public ApiMessage Update(User user)
         {
             var result = _context.User.SingleOrDefault(p => p.id.Equals(user.id));
+
 
             if (result != null)
             {

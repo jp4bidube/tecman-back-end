@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.JsonWebTokens;
 using Newtonsoft.Json;
 using RestSharp;
 using Tecman.ValueObject.UserObject;
+using System.Security.Cryptography;
 
 namespace Tecman.Business.Implementation
 {
@@ -46,8 +47,6 @@ namespace Tecman.Business.Implementation
 
             User user = new User{
                 username = userCreate.username,
-                userStatus = _repository.FindUserStatusById(1),
-                userProfile = _repository.FindUserProfileById(userCreate.userProfileId),
                 password = userCreate.password,
                 registrationDate = DateTime.Now,
                 employee = _employee.FindById(userCreate.employeeId),
@@ -57,18 +56,31 @@ namespace Tecman.Business.Implementation
 
         }
 
-        public bool DisableUser(User user)
-        {
-            user.userStatus = _repository.FindUserStatusById(2);
-
-            ApiMessage disable = _repository.Update(user);
-
-            return disable.Success;
-        }
-
         public User FindById(int id)
         {
             return _repository.Find(id);
+        }
+
+        public bool RevokeToken(string username)
+        {
+            User user = _repository.FindByUsername(username);
+            TokenType token = _service.GetTokenType(2);
+            UserToken userToken = _service.GetUserTokenByUserIdAndTokenTypeId(user.id, token.id);
+
+            bool revoke = _service.RevokeTokenByValue(userToken.token);
+            return revoke;
+        }
+
+        public bool Update(UserUpdate userUpdate, User user)
+        {
+
+            user.username = userUpdate.username;
+            user.password = _repository.ComputeHash(userUpdate.password, new SHA256CryptoServiceProvider()).ToString();
+            user.employee = _employee.FindById(userUpdate.employeeId);
+
+            ApiMessage update = _repository.Update(user);
+
+            return update.Success;
         }
 
         public TokenObject ValidateCredentials(UserCredentials userCredentials)
@@ -77,7 +89,7 @@ namespace Tecman.Business.Implementation
             var user = _repository.ValidateCredentials(userCredentials);
             if (user == null) return null; // First Return Invalid User
 
-            if (user.userStatus.id == 2)
+            if (user.employee.employeeStatus.id == 2)
             {
                 return null;
             }
@@ -89,7 +101,7 @@ namespace Tecman.Business.Implementation
 
             if (user.deactivationDate < DateTime.Now)
             {
-                user.userStatus = _repository.FindUserStatusById(2);
+                user.employee.employeeStatus = _employee.FindEmployeeStatusById(2);
                 _repository.Update(user);
                 return null;
             }
@@ -125,8 +137,8 @@ namespace Tecman.Business.Implementation
             return new TokenObject(
                 true,
                 user.id,
-                user.userStatus.id,
-                user.userProfile.id,
+                user.employee.employeeStatus.id,
+                user.employee.role.id,
                 user.username,
                 createDate.ToString(DATE_FORMAT),
                 expirationDateAccessToken.ToString(DATE_FORMAT),
@@ -164,7 +176,7 @@ namespace Tecman.Business.Implementation
                         // Gets the user status
                         User user = _repository.Find(userRefreshToken.user.id);
 
-                        if(user.userStatus.id == 2)
+                        if(user.employee.employeeStatus.id == 2)
                         {
                             return null;
                         }
@@ -191,8 +203,8 @@ namespace Tecman.Business.Implementation
                         return new TokenObject(
                             true,
                             userRefreshToken.user.id,
-                            user.userStatus.id,
-                            user.userProfile.id,
+                            user.employee.employeeStatus.id,
+                            user.employee.role.id,
                             userRefreshToken.user.username,
                             createDate.ToString(DATE_FORMAT),
                             expirationDateAccessToken.ToString(DATE_FORMAT),

@@ -91,7 +91,7 @@ namespace Tecman.Controllers
         [Authorize("Bearer")]
         [Route("{id}")]
         [Produces("application/json")]
-        [ProducesResponseType((200), Type = typeof(TokenObject))]
+        [ProducesResponseType((200), Type = typeof(User))]
         [ProducesResponseType(401)]
         public async Task<IActionResult> FindById(int id)
         {
@@ -101,27 +101,6 @@ namespace Tecman.Controllers
             if (user == null) return BadRequest(_response.ResponseApi(100,null));
 
             return Ok(_response.ResponseApi(0, user));
-
-        }
-
-        [HttpPatch]
-        [Authorize("Bearer")]
-        [Route("{id}/disable-user")]
-        [Produces("application/json")]
-        [ProducesResponseType((200), Type = typeof(TokenObject))]
-        [ProducesResponseType(401)]
-        public async Task<IActionResult> DisableUser(int id)
-        {
-
-            User user = _business.FindById(id);
-
-            if (user == null) return BadRequest(_response.ResponseApi(100, null));
-
-            bool disable = _business.DisableUser(user);
-
-            if(!disable) return BadRequest(_response.ResponseApi(-1, null));
-
-            return Ok(_response.ResponseApi(0, null));
 
         }
 
@@ -139,7 +118,7 @@ namespace Tecman.Controllers
 
             User user = _business.FindById(auth.nameid);
 
-            MeObject result = new MeObject(user.username, user.employee.name, user.employee.role.role, user.avatarUrl, user.employee.email);
+            MeObject result = new MeObject(user.username, user.employee.name, user.employee.role.role, user.employee.avatarUrl, user.employee.email);
 
             return Ok(_response.ResponseApi(0, result));
 
@@ -151,22 +130,60 @@ namespace Tecman.Controllers
         [Produces("application/json")]
         [ProducesResponseType((200), Type = typeof(TokenObject))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> Update(UserUpdate userUpdate, int id)
         {
-
             User user = _business.FindById(id);
 
-            if (user == null) return BadRequest(_response.ResponseApi(100, null));
-
-            bool disable = _business.DisableUser(user);
-
-            if (!disable) return BadRequest(_response.ResponseApi(-1, null));
+            bool update = _business.Update(userUpdate,user);
 
             return Ok(_response.ResponseApi(0, null));
 
         }
 
+        [HttpGet]
+        [Route("Refresh/{token}")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(408)]
+        public IActionResult Refresh(string token)
+        {
+            // check if exist a payload
+            if (token == null)
+            {
+                return BadRequest(_response.ResponseApi(-2, null));
+            }
+            else
+            {
+                //check if refresh token is valid and refresh access token case true
+                var Rtoken = _business.ValidateCredentials(Uri.UnescapeDataString(token));
+                if (Rtoken == null)
+                {
+                    return Unauthorized();
+                }
+                else
+                {
+                    return Ok(_response.ResponseApi(0, Rtoken));
+                }
+            }
+        }
 
+
+        [HttpGet]
+        [Route("Logout")]
+        [Authorize("Bearer")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(408)]
         
+        public IActionResult Logout()
+        {
+            var username = User.Identity.Name;
+            bool result = _business.RevokeToken(username);
+            if (result != true) return BadRequest(_response.ResponseApi(-2, null));
+
+            return Ok(_response.ResponseApi(0, null));
+        }
     }
 }

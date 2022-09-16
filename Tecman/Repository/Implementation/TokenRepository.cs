@@ -206,5 +206,10 @@ namespace Tecman.Repository.Implementation
         {
             return _context.Token.SingleOrDefault(prop => prop.user.id.Equals(userId) && prop.token.Equals(token));
         }
+
+        public UserToken GetUserTokenByUserIdAndTokenTypeId(int userId, int token)
+        {
+            return _context.Token.SingleOrDefault(prop => prop.user.id.Equals(userId) && prop.tokenType.id.Equals(token));
+        }
     }
 }

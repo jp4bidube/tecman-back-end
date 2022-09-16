@@ -23,5 +23,10 @@ namespace Tecman.Services {
         public bool CreateUserToken(int id, string token, int tokenType, DateTime expirationDate, DateTime? dateOfUser);
         public UserToken GetUserToken(int userId, string token);
         public JwtCredentials GetCrendentials(string token);
+
+        UserToken GetUserTokenByUserIdAndTokenTypeId(int userId, int token);
+
+        public TokenType GetTokenType(int id);
+
     }
 }

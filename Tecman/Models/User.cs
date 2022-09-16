@@ -19,22 +19,11 @@ namespace Tecman.Models
         [Column("senha")]
         public string? password { get; set; }
 
-        [Column("avatar_url")]
-        public string? avatarUrl { get; set; }
-
         [Column("data_de_ativacao")]
         public DateTime? registrationDate { get; set; }
      
         [Column("data_de_desativacao")]
         public DateTime? deactivationDate { get; set; }
-    
-        [Column("usuario_status_id")]
-        [ForeignKey("usuario_status_id")]
-        public virtual UserStatus userStatus { get; set; }
-
-        [Column("usuario_perfil_id")]
-        [ForeignKey("usuario_perfil_id")]
-        public virtual UserProfile userProfile { get; set; }
 
         [Column("funcionario_id")]
         [ForeignKey("funcionario_id")]
