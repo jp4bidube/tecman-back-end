@@ -34,6 +34,11 @@ namespace Tecman.Services.Implementation
                     success = false;
                     result = genericObject;
                     break;
+                case -401:
+                    message = "Usuario ou senha inválido!";
+                    success = false;
+                    result = genericObject;
+                    break;
 
                 default:
                     message = "Error";

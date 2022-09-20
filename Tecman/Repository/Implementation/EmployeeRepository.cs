@@ -51,13 +51,55 @@ namespace Tecman.Repository.Implementation
             return _context.Role.FirstOrDefault(element => element.id.Equals(id));
         }
 
-        public List<Employee> GetListEmployee(String sortDirection , int limit, int offset, String q)
+        public List<Employee> GetListEmployeeOrderByCPF(string sortDirection, int limit, int offset, string q)
         {
-
-
             if (sortDirection == "desc")
             {
-                List<Employee> employee = _context.Employee.Where(prop=> prop.cpf.ToUpper().Contains(q.ToUpper()) || prop.email.ToUpper().Contains(q.ToUpper()) || prop.name.ToUpper().Contains(q.ToUpper()) || prop.phoneNumber.ToUpper().Contains(q.ToUpper()))                    
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .Skip(offset)
+                    .Take(limit)
+                    .OrderByDescending(prop => prop.email)
+                    .ToList();
+                return employee;
+            }
+            else
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .OrderBy(prop => prop.email)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return employee;
+            }
+        }
+
+        public List<Employee> GetListEmployeeOrderByEmail(string sortDirection, int limit, int offset, string q)
+        {
+            if (sortDirection == "desc")
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .Skip(offset)
+                    .Take(limit)
+                    .OrderByDescending(prop => prop.email)
+                    .ToList();
+                return employee;
+            }
+            else
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .OrderBy(prop => prop.email)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return employee;
+            }
+        }
+
+        public List<Employee> GetListEmployeeOrderByName(String sortDirection , int limit, int offset, String q)
+        {
+            if (sortDirection == "desc")
+            {
+                List<Employee> employee = _context.Employee.Where(prop=> prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))                    
                     .Skip(offset)
                     .Take(limit)
                     .OrderByDescending(prop => prop.name)
@@ -66,14 +108,57 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q.ToUpper()) || prop.email.ToUpper().Contains(q.ToUpper()) || prop.name.ToUpper().Contains(q.ToUpper()) || prop.phoneNumber.ToUpper().Contains(q.ToUpper()))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
                     .OrderBy(prop => prop.name)
                     .Skip(offset)
                     .Take(limit)
                     .ToList();
                 return employee;
             }
-            return _context.Employee.ToList();
+        }
+
+        public List<Employee> GetListEmployeeOrderByRole(string sortDirection, int limit, int offset, string q)
+        {
+            if (sortDirection == "desc")
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .Skip(offset)
+                    .Take(limit)
+                    .OrderByDescending(prop => prop.role.role)
+                    .ToList();
+                return employee;
+            }
+            else
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .OrderBy(prop => prop.role.role)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return employee;
+            }
+        }
+
+        public List<Employee> GetListEmployeeOrderByStatus(string sortDirection, int limit, int offset, string q)
+        {
+            if (sortDirection == "desc")
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .Skip(offset)
+                    .Take(limit)
+                    .OrderByDescending(prop => prop.employeeStatus.status)
+                    .ToList();
+                return employee;
+            }
+            else
+            {
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                    .OrderBy(prop => prop.employeeStatus.status)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+                return employee;
+            }
         }
 
         public ApiMessage Update(Employee employee)
@@ -98,5 +183,7 @@ namespace Tecman.Repository.Implementation
                 Result = result
             };
         }
+
+
     }
 }

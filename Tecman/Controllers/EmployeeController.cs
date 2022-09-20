@@ -47,18 +47,18 @@ namespace Tecman.Controllers
 
         [HttpPatch]
         [Authorize("Bearer")]
-        [Route("{id}/disable-employee")]
+        [Route("{id}/disable-enable-employee")]
         [Produces("application/json")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> DisableUser(int id)
+        public async Task<IActionResult> DisableEnableUser(int id)
         {
 
             Employee employee = _business.FindById(id);
 
             if (employee == null) return BadRequest(_response.ResponseApi(100, null));
 
-            bool disable = _business.DisableEmployee(employee);
+            bool disable = _business.DisableEnableEmployee(employee);
 
             if (!disable) return BadRequest(_response.ResponseApi(-1, null));
 
@@ -86,14 +86,16 @@ namespace Tecman.Controllers
         [HttpGet]
         [Produces("application/json")]
         [Authorize("Bearer")]
-        [Route("page={offset}order={order}limit={limit}q={q}")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> Get(String order, int limit, int offset, String q)
+        public async Task<IActionResult> Get([FromQuery] String sort,[FromQuery] String order, [FromQuery] int limit, [FromQuery] int offset, [FromQuery] String search)
         {
-            List<Employee> employee = _business.GetListEmployee(order, limit, offset, q);
+            if (order == null || limit == null || offset == null || sort == null) return BadRequest(_response.ResponseApi(1,null));
 
+            List<Employee> employee = _business.GetListEmployee(order, limit, offset, search,sort);
+
+            Response.Headers.Add("X-Total-Count", employee.Count().ToString());
             return Ok(_response.ResponseApi(0, employee));
 
         }

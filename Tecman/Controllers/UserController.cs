@@ -80,7 +80,7 @@ namespace Tecman.Controllers
 
             var token = _business.ValidateCredentials(user);
 
-            if (token == null) return Unauthorized();
+            if (token == null) return Unauthorized(_response.ResponseApi(401,null));
 
             return Ok(_response.ResponseApi(0, token));
 

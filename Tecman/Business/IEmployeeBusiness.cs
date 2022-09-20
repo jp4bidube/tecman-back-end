@@ -15,11 +15,11 @@ namespace Tecman.Business
 
         Role FindRoleById(int id);
 
-        bool DisableEmployee(Employee employee);
+        bool DisableEnableEmployee(Employee employee);
         bool UpdateAddressEmployee(Employee employee, AddressObject addressObject);
 
         bool Create(EmployeeCreate employeeCreate);
 
-        List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String search, String sort);
     }
 }

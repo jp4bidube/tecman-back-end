@@ -18,6 +18,10 @@ namespace Tecman.Repository
         ApiMessage Update(Employee employee);
 
         Employee Create(Employee employee);
-        List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListEmployeeOrderByName(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListEmployeeOrderByEmail(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListEmployeeOrderByRole(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListEmployeeOrderByStatus(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListEmployeeOrderByCPF(String sortDirection, int limit, int offset, String q);
     }
 }

@@ -82,9 +82,16 @@ namespace Tecman.Business.Implementation
            
         }
 
-        public bool DisableEmployee(Employee employee)
+        public bool DisableEnableEmployee(Employee employee)
         {
-            employee.employeeStatus = _repository.FindEmployeeStatusById(2);
+            if(employee.employeeStatus.id == 1)
+            {
+                employee.employeeStatus = _repository.FindEmployeeStatusById(2);
+            } else
+            {
+                employee.employeeStatus = _repository.FindEmployeeStatusById(1);
+            }
+
             ApiMessage update = _repository.Update(employee);
 
             return update.Success;
@@ -105,9 +112,30 @@ namespace Tecman.Business.Implementation
             return _repository.FindRoleById(id);
         }
 
-        public List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String q)
+        public List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String search, String sort)
         {
-            return _repository.GetListEmployee(sortDirection, limit, offset, q);
+            switch (sort)
+            {
+                case "name":
+                    return _repository.GetListEmployeeOrderByName(sortDirection, limit, offset, search);
+                    break;
+                case "cpf":
+                    return _repository.GetListEmployeeOrderByCPF(sortDirection, limit, offset, search);
+                    break;
+                case "status":
+                    return _repository.GetListEmployeeOrderByStatus(sortDirection, limit, offset, search);
+                    break;
+                case "role":
+                    return _repository.GetListEmployeeOrderByRole(sortDirection, limit, offset, search);
+                    break;
+                case "email":
+                    return _repository.GetListEmployeeOrderByEmail(sortDirection, limit, offset, search);
+                    break;
+                default:
+                    return _repository.GetListEmployeeOrderByName(sortDirection, limit, offset, search);
+                    break;
+
+            }
         }
 
         public bool UpdateAddressEmployee(Employee employee, AddressObject addressObject)
