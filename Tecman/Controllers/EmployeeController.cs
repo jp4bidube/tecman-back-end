@@ -97,7 +97,8 @@ namespace Tecman.Controllers
 
             List<Employee> employee = _business.GetListEmployee(order, limit, offset, search,sort);
 
-            Response.Headers.Add("X-Total-Count", employee.Count().ToString());
+            
+            Response.Headers.Add("X-Total-Count", _business.GetListEmployee(order, limit, offset, "", sort).Count().ToString());
             return Ok(_response.ResponseApi(0, employee));
 
         }
