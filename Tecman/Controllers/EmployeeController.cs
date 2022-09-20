@@ -93,6 +93,8 @@ namespace Tecman.Controllers
         {
             if (order == null || limit == null || offset == null || sort == null) return BadRequest(_response.ResponseApi(1,null));
 
+            if (search == null) search = "";
+
             List<Employee> employee = _business.GetListEmployee(order, limit, offset, search,sort);
 
             Response.Headers.Add("X-Total-Count", employee.Count().ToString());
