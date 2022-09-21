@@ -16,6 +16,7 @@ namespace Tecman.Repository
         User FindByUsername(String username);
         User ValidateCredentials(UserCredentials user);
         User Find(int id);
+        User FindByEmployeeId(int id);
         UserToken ValidateRefreshToken(string refreshToken);
         UserToken GetExpireAccessToken(int userId);
         ApiMessage Update(User user);

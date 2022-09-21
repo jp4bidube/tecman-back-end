@@ -55,7 +55,7 @@ namespace Tecman.Business.Implementation
             {
                 address = address,
                 employeeStatus = _repository.FindEmployeeStatusById(1),
-                avatarUrl = employeeCreate.avatar_url,
+                avatarUrl = employeeCreate.avatarUrl,
                 birthDate = employeeCreate.birthDate,
                 cpf = employeeCreate.cpf,
                 email = employeeCreate.email,
@@ -146,6 +146,43 @@ namespace Tecman.Business.Implementation
                     break;
 
             }
+        }
+
+        public bool Update(Employee employee, EmployeeUpdate employeeUpdate)
+        {
+            employee.name = employeeUpdate.name;
+            employee.cpf = employeeUpdate.cpf;
+            employee.role = _repository.FindRoleById(employeeUpdate.role);
+            employee.phoneNumber = employeeUpdate.phoneNumber;
+            employee.avatarUrl = employeeUpdate.avatarUrl;
+            employee.email = employee.email;
+            employee.birthDate = employeeUpdate.birthDate;
+
+            if(employee.address != null)
+            {
+                employee.address.cep = employeeUpdate.address.cep;
+                employee.address.district = employeeUpdate.address.district;
+                employee.address.complement = employeeUpdate.address.complement;
+                employee.address.number = employeeUpdate.address.number;
+                employee.address.street = employeeUpdate.address.street;
+            }
+
+            ApiMessage updateEmployee = _repository.Update(employee);
+
+            if (updateEmployee.Success == false) return false;
+
+            if(employeeUpdate.employeeUser.login == true)
+            {
+                User user = _user.FindByEmployeeId(employee.id);
+
+                user.username = employeeUpdate.employeeUser.username;
+
+                ApiMessage updateUser = _user.Update(user);
+
+                if (updateUser.Success == false) return false;
+            }
+
+            return true;
         }
 
         public bool UpdateAddressEmployee(Employee employee, AddressObject addressObject)

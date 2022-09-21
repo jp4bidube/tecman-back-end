@@ -7,7 +7,7 @@ using Tecman.ValueObject.EmployeeObjects;
 
 namespace Tecman.ValueObject
 {
-    public class EmployeeCreate
+    public class EmployeeUpdate
     {
         public string? name { get; set; }
 
@@ -24,7 +24,7 @@ namespace Tecman.ValueObject
         public int role { get; set; }
 
         public virtual AddressObject address { get; set; }
-        public virtual EmployeeUserCreate employeeUser { get; set; }
+        public virtual EmployeeUserUpdate employeeUser { get; set; }
 
         
     }

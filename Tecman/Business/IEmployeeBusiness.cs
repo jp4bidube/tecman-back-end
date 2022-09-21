@@ -20,6 +20,7 @@ namespace Tecman.Business
         bool UpdateAddressEmployee(Employee employee, AddressObject addressObject);
 
         bool Create(EmployeeCreate employeeCreate);
+        bool Update(Employee employee,EmployeeUpdate employeeUpdate);
 
         List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String search, String sort);
         int CountListEmployee(String search);

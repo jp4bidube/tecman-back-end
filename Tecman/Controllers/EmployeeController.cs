@@ -40,7 +40,7 @@ namespace Tecman.Controllers
 
             Employee employee = _business.FindByCPF(employeeCreate.cpf);
 
-            if (employee != null) return BadRequest(_response.ResponseApi(1,null));
+            if (employee != null) return BadRequest(_response.ResponseApi(101,null));
 
             bool create = _business.Create(employeeCreate);
 
@@ -108,20 +108,20 @@ namespace Tecman.Controllers
 
         }
 
-        [HttpPatch]
+        [HttpPut]
         [Authorize("Bearer")]
-        [Route("{id}/edit-address-employee")]
+        [Route("{id}")]
         [Produces("application/json")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> UpdateAddressEmployee(int id, AddressObject addressObject)
+        public async Task<IActionResult> UpdateEmployee(int id, EmployeeUpdate employeeUpdate)
         {
 
             Employee employee = _business.FindById(id);
 
             if (employee == null) return BadRequest(_response.ResponseApi(100, null));
 
-            bool update = _business.UpdateAddressEmployee(employee, addressObject);
+            bool update = _business.Update(employee, employeeUpdate);
 
             if (!update) return BadRequest(_response.ResponseApi(-1, null));
 

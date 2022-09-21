@@ -56,6 +56,11 @@ namespace Tecman.Business.Implementation
 
         }
 
+        public User FindByEmployeeId(int id)
+        {
+            return _repository.FindByEmployeeId(id);
+        }
+
         public User FindById(int id)
         {
             return _repository.Find(id);

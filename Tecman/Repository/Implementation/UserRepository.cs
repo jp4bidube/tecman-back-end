@@ -112,5 +112,10 @@ namespace Tecman.Repository.Implementation
                 Result = result
             };
         }
+
+        public User FindByEmployeeId(int id)
+        {
+            return _context.User.FirstOrDefault(prop=> prop.employee.id.Equals(id));
+        }
     }
 }

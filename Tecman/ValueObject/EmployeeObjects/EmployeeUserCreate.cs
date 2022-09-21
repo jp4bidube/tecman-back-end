@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Tecman.ValueObject.EmployeeObjects
 {
-    public class EmployeeUser
+    public class EmployeeUserCreate
     {
         public bool login { get; set; }
         public string username { get; set; }
