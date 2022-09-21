@@ -37,6 +37,11 @@ namespace Tecman.Controllers
         [ProducesResponseType(401)]
         public async Task<IActionResult> Create(EmployeeCreate employeeCreate)
         {
+
+            Employee employee = _business.FindByCPF(employeeCreate.cpf);
+
+            if (employee != null) return BadRequest(_response.ResponseApi(1,null));
+
             bool create = _business.Create(employeeCreate);
 
             if (create == false) return BadRequest(create);
@@ -95,10 +100,10 @@ namespace Tecman.Controllers
 
             if (search == null) search = "";
 
-            List<Employee> employee = _business.GetListEmployee(order, limit, offset, search,sort);
+            List<Employee> employee = _business.GetListEmployee(order, limit, offset, search.ToUpper(), sort);
 
             
-            Response.Headers.Add("X-Total-Count", _business.GetListEmployee(order, limit, offset, "", sort).Count().ToString());
+            Response.Headers.Add("X-Total-Count", _business.CountListEmployee(search.ToUpper()).ToString());
             return Ok(_response.ResponseApi(0, employee));
 
         }
@@ -123,6 +128,8 @@ namespace Tecman.Controllers
             return Ok(_response.ResponseApi(0, null));
 
         }
+
+       
     }
 
  }

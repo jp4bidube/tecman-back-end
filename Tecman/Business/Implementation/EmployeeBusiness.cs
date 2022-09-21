@@ -27,6 +27,11 @@ namespace Tecman.Business.Implementation
 
         }
 
+        public int CountListEmployee(string search)
+        {
+            return _repository.CountListEmployee(search);
+        }
+
         public bool Create(EmployeeCreate employeeCreate)
         {
             Address address = null;
@@ -95,6 +100,11 @@ namespace Tecman.Business.Implementation
             ApiMessage update = _repository.Update(employee);
 
             return update.Success;
+        }
+
+        public Employee FindByCPF(string cpf)
+        {
+            return _repository.FindByCPF(cpf);
         }
 
         public Employee FindById(int id)

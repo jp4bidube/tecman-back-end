@@ -62,6 +62,10 @@ namespace Tecman.Controllers
         [ProducesResponseType(401)]
         public async Task<IActionResult> Create(UserCreate userCreate)
         {
+            User user = _business.FindByUsername(userCreate.username);
+
+            if (user != null) return BadRequest(_response.ResponseApi(101, null));
+
             ApiMessage create = _business.Create(userCreate);
 
             if (create.Success == false) return BadRequest(create);

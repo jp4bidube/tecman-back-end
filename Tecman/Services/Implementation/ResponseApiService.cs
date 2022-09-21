@@ -30,7 +30,12 @@ namespace Tecman.Services.Implementation
                     result = genericObject;
                     break;
                 case -100:
-                    message = "User Not Found";
+                    message = "Usuario não encontrado!";
+                    success = false;
+                    result = genericObject;
+                    break;
+                case -101:
+                    message = "CPF já vinculado a outro funcionario!";
                     success = false;
                     result = genericObject;
                     break;

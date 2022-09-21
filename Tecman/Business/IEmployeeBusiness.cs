@@ -10,6 +10,7 @@ namespace Tecman.Business
     public interface IEmployeeBusiness
     {
         Employee FindById(int id);
+        Employee FindByCPF(string cpf);
 
         EmployeeStatus FindEmployeeStatusById(int id);
 
@@ -21,5 +22,6 @@ namespace Tecman.Business
         bool Create(EmployeeCreate employeeCreate);
 
         List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String search, String sort);
+        int CountListEmployee(String search);
     }
 }

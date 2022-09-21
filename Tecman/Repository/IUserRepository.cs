@@ -20,7 +20,6 @@ namespace Tecman.Repository
         UserToken GetExpireAccessToken(int userId);
         ApiMessage Update(User user);
         bool RevokeToken(string userName);
-
         public object ComputeHash(string input, SHA256CryptoServiceProvider algotithm);
 
     }

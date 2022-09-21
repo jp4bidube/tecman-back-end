@@ -20,6 +20,11 @@ namespace Tecman.Repository.Implementation
             _context = context;
         }
 
+        public int CountListEmployee(string q)
+        {
+            return _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q)).Count();
+        }
+
         public Employee Create(Employee employee)
         {
             try
@@ -40,6 +45,11 @@ namespace Tecman.Repository.Implementation
         {
             return _context.Employee.FirstOrDefault(element => element.id.Equals(id));
         }
+        public Employee FindByCPF(string cpf)
+        {
+            return _context.Employee.FirstOrDefault(element => element.cpf.Equals(cpf));
+        }
+
 
         public EmployeeStatus FindEmployeeStatusById(int id)
         {
@@ -55,7 +65,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .Skip(offset)
                     .Take(limit)
                     .OrderByDescending(prop => prop.email)
@@ -64,7 +74,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .OrderBy(prop => prop.email)
                     .Skip(offset)
                     .Take(limit)
@@ -77,7 +87,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .Skip(offset)
                     .Take(limit)
                     .OrderByDescending(prop => prop.email)
@@ -86,7 +96,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .OrderBy(prop => prop.email)
                     .Skip(offset)
                     .Take(limit)
@@ -99,7 +109,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Employee> employee = _context.Employee.Where(prop=> prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))                    
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .Skip(offset)
                     .Take(limit)
                     .OrderByDescending(prop => prop.name)
@@ -108,7 +118,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .OrderBy(prop => prop.name)
                     .Skip(offset)
                     .Take(limit)
@@ -121,7 +131,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .Skip(offset)
                     .Take(limit)
                     .OrderByDescending(prop => prop.role.role)
@@ -130,7 +140,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .OrderBy(prop => prop.role.role)
                     .Skip(offset)
                     .Take(limit)
@@ -143,7 +153,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .Skip(offset)
                     .Take(limit)
                     .OrderByDescending(prop => prop.employeeStatus.status)
@@ -152,7 +162,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.Contains(q) || prop.email.Contains(q) || prop.name.Contains(q) || prop.phoneNumber.Contains(q))
+                List<Employee> employee = _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q))
                     .OrderBy(prop => prop.employeeStatus.status)
                     .Skip(offset)
                     .Take(limit)

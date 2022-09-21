@@ -10,6 +10,7 @@ namespace Tecman.Repository
     public interface IEmployeeRepository
     {
         Employee FindById(int id);
+        Employee FindByCPF(string cpf);
 
         EmployeeStatus FindEmployeeStatusById(int id);
 
@@ -23,5 +24,7 @@ namespace Tecman.Repository
         List<Employee> GetListEmployeeOrderByRole(String sortDirection, int limit, int offset, String q);
         List<Employee> GetListEmployeeOrderByStatus(String sortDirection, int limit, int offset, String q);
         List<Employee> GetListEmployeeOrderByCPF(String sortDirection, int limit, int offset, String q);
+        int CountListEmployee(String q);
+
     }
 }

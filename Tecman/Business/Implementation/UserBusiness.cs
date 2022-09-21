@@ -61,6 +61,11 @@ namespace Tecman.Business.Implementation
             return _repository.Find(id);
         }
 
+        public User FindByUsername(string username)
+        {
+            return _repository.FindByUsername(username);
+        }
+
         public bool RevokeToken(string username)
         {
             User user = _repository.FindByUsername(username);
