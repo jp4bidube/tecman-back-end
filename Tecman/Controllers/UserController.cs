@@ -189,5 +189,28 @@ namespace Tecman.Controllers
 
             return Ok(_response.ResponseApi(0, null));
         }
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Route("Recovery")]
+        [ProducesResponseType((200), Type = typeof(User))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> RecoveryPassword(RecoveryPassword recoveryPassword)
+        {
+
+            //User user = _business.FindByCPF(recoveryPassword.cpf);
+
+            //if (user == null) return BadRequest(_response.ResponseApi(100, null));
+
+            //UserCredentials credentials = new UserCredentials
+            //{
+            //    Password = user.password,
+            //    Username = user.username
+            //};
+
+            
+            return Ok(_response.ResponseApi(0, null));
+
+        }
     }
 }

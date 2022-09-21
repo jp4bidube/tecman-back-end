@@ -55,7 +55,8 @@ namespace Tecman
             {
                 builder.AllowAnyOrigin()
                 .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowAnyHeader()
+                .WithExposedHeaders("X-Total-Count");
             }));
 
 
