@@ -135,14 +135,14 @@ namespace Tecman.Controllers
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> creatClientAddress(int id , ClientAddressUpdate clientAddressUpdate)
+        public async Task<IActionResult> creatClientAddress(int id , AddressObject clientAddressUpdate)
         {
             Address address = _address.Create(new Address {
-                street = clientAddressUpdate.address.street,
-                cep = clientAddressUpdate.address.cep,
-                district = clientAddressUpdate.address.district,
-                number = clientAddressUpdate.address.number,
-                complement = clientAddressUpdate.address.complement
+                street = clientAddressUpdate.street,
+                cep = clientAddressUpdate.cep,
+                district = clientAddressUpdate.district,
+                number = clientAddressUpdate.number,
+                complement = clientAddressUpdate.complement
                  });
 
             if (address == null) return BadRequest(_response.ResponseApi(-2, null));

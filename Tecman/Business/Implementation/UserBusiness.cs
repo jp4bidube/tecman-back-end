@@ -28,15 +28,17 @@ namespace Tecman.Business.Implementation
         private ITokenService _service;
         private TokenConfiguration _configuration;
         private IEmployeeBusiness _employee;
+        private IEmployeeRepository _employeeRepo;
 
 
-        public UserBusiness(IResponseApiService response, IUserRepository repository, ITokenService service, TokenConfiguration configuration, IEmployeeBusiness employee)
+        public UserBusiness(IResponseApiService response, IUserRepository repository, ITokenService service, TokenConfiguration configuration, IEmployeeBusiness employee, IEmployeeRepository employeeRepo)
         {
             _response = response;
             _repository = repository;
             _service = service;
             _configuration = configuration;
             _employee = employee;
+            _employeeRepo = employeeRepo;
 
         }
 
@@ -87,9 +89,13 @@ namespace Tecman.Business.Implementation
             user.username = userUpdate.username;
             user.password = _repository.ComputeHash(userUpdate.password, new SHA256CryptoServiceProvider()).ToString();
             user.employee = _employee.Find(userUpdate.employeeId);
-            user.employee.role = _employee.FindRoleById(userUpdate.role);
 
             ApiMessage update = _repository.Update(user);
+
+
+            Employee employee = _employee.Find(user.employee.id);
+            employee.role = _employee.FindRoleById(userUpdate.role);
+            _employeeRepo.Update(employee);
 
             return update.Success;
         }

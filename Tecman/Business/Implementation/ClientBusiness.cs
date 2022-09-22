@@ -153,5 +153,19 @@ namespace Tecman.Business.Implementation
 
             return true;
         }
+
+        public ClientAddress CreateClientAddress(int addressId, int clientId)
+        {
+            ClientAddress clientAddress = new ClientAddress
+            {
+                address = _address.findById(addressId),
+                defaultAddress = false,
+                clientId = addressId,
+            };
+
+            ClientAddress create =_repository.CreateClientAddress(clientAddress);
+
+            return create;
+        }
     }
 }
