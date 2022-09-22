@@ -47,14 +47,24 @@ namespace Tecman.Business.Implementation
             User aux = _repository.FindByUsername(userCreate.username);
             if (aux != null) return _response.ResponseApi(-1, "Usuário já existente!");
 
-            User user = new User{
-                username = userCreate.username,
-                password = userCreate.password,
-                registrationDate = DateTime.Now,
-                employee = _employee.Find(userCreate.employeeId),
-            };
-
-            return _repository.Create(user);
+            try
+            {
+                Employee employee = _employee.Find(userCreate.employeeId);
+                employee.role = _employee.FindRoleById(userCreate.role);
+                _employeeRepo.Update(employee);
+                User user = new User
+                {
+                    username = userCreate.username,
+                    password = userCreate.password,
+                    registrationDate = DateTime.Now,
+                    employee = _employee.Find(userCreate.employeeId),
+                };
+                return _repository.Create(user);
+            }
+            catch
+            {
+              return _response.ResponseApi(-1, "Error Ao criar Usuario");
+            }          
 
         }
 
@@ -91,11 +101,6 @@ namespace Tecman.Business.Implementation
             user.employee = _employee.Find(userUpdate.employeeId);
 
             ApiMessage update = _repository.Update(user);
-
-
-            Employee employee = _employee.Find(user.employee.id);
-            employee.role = _employee.FindRoleById(userUpdate.role);
-            _employeeRepo.Update(employee);
 
             return update.Success;
         }

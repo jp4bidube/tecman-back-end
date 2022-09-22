@@ -14,8 +14,5 @@ namespace Tecman.ValueObject.UserObject
         [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {0}")]
         public int employeeId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {0}")]
-        public int role { get; set; }
-
     }
 }
