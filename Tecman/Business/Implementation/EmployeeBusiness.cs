@@ -113,6 +113,7 @@ namespace Tecman.Business.Implementation
             Employee employee = _repository.FindById(id);
             EmployeeUnique employeeUnique = new EmployeeUnique
             {
+                id = employee.id,
                 address = employee.address,
                 employeeStatus = employee.employeeStatus,
                 avatarUrl = employee.avatarUrl,
