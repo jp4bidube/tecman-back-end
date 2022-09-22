@@ -113,17 +113,6 @@ namespace Tecman.Controllers
 
             if (update == false) return BadRequest(_response.ResponseApi(-2, null));
 
-            if(clientAddressUpdate.defaultAddress == true)
-            {
-                ClientAddress clientAddress = _business.GetClientAddress(id, address.id);
-
-                if (clientAddress == null) return BadRequest(_response.ResponseApi(-300, null));
-
-                bool setDefault = _business.SetDefault(clientAddress);
-
-                if (!setDefault) return BadRequest(_response.ResponseApi(-2, null));
-            }
-
             return Ok(_response.ResponseApi(0, null));
 
         }
@@ -147,20 +136,16 @@ namespace Tecman.Controllers
 
             if (address == null) return BadRequest(_response.ResponseApi(-2, null));
 
+            ClientAddress clientAddress = _business.CreateClientAddress(address.id, id);
+
+            if (clientAddress == null) return BadRequest(_response.ResponseApi(-2, null));
+
             if (clientAddressUpdate.defaultAddress == true)
             {
-                ClientAddress clientAddress = _business.GetClientAddress(id, address.id);
-
-                if (clientAddress == null) return BadRequest(_response.ResponseApi(-300, null));
-
                 bool setDefault = _business.SetDefault(clientAddress);
 
                 if (!setDefault) return BadRequest(_response.ResponseApi(-2, null));
             }
-
-            ClientAddress clientAddress1 = _business.CreateClientAddress(address.id, id);
-
-            if (clientAddress1 == null) return BadRequest(_response.ResponseApi(-2, null));
 
             return Ok(_response.ResponseApi(0, null));
 

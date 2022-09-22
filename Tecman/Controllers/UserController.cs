@@ -45,13 +45,15 @@ namespace Tecman.Controllers
 
         private IResponseApiService _response;
         private IUserBusiness _business;
+        private IEmployeeBusiness _employee;
         private ITokenService _token;
 
-        public UserController(IResponseApiService response, IUserBusiness business, ITokenService token)
+        public UserController(IResponseApiService response, IUserBusiness business, ITokenService token, IEmployeeBusiness employee)
         {
             _response = response;
             _business = business;
             _token = token;
+            _employee= employee;
         }
 
         [HttpPost]
@@ -190,7 +192,7 @@ namespace Tecman.Controllers
             return Ok(_response.ResponseApi(0, null));
         }
 
-        [HttpGet]
+        [HttpPost]
         [Produces("application/json")]
         [Route("Recovery")]
         [ProducesResponseType((200), Type = typeof(User))]
@@ -198,17 +200,16 @@ namespace Tecman.Controllers
         public async Task<IActionResult> RecoveryPassword(RecoveryPassword recoveryPassword)
         {
 
-            //User user = _business.FindByCPF(recoveryPassword.cpf);
+            Employee employee = _employee.FindByCPF(recoveryPassword.cpf);
 
-            //if (user == null) return BadRequest(_response.ResponseApi(100, null));
+            if (employee == null) return BadRequest(_response.ResponseApi(-100, null));
 
-            //UserCredentials credentials = new UserCredentials
-            //{
-            //    Password = user.password,
-            //    Username = user.username
-            //};
+            User user = _business.FindByUsername(recoveryPassword.username);
 
-            
+            if (user == null) return BadRequest(_response.ResponseApi(-100, null));
+
+            if(employee.id != user.employee.id) return BadRequest(_response.ResponseApi(-102, null));
+
             return Ok(_response.ResponseApi(0, null));
 
         }

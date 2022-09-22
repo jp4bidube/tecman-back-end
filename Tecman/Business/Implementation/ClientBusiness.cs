@@ -160,7 +160,7 @@ namespace Tecman.Business.Implementation
             {
                 address = _address.findById(addressId),
                 defaultAddress = false,
-                clientId = addressId,
+                clientId = clientId,
             };
 
             ClientAddress create =_repository.CreateClientAddress(clientAddress);

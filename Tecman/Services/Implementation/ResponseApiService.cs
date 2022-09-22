@@ -39,6 +39,11 @@ namespace Tecman.Services.Implementation
                     success = false;
                     result = genericObject;
                     break;
+                case -102:
+                    message = "CPF e nome de usuario não coincidem no cadastro!";
+                    success = false;
+                    result = genericObject;
+                    break;
                 case -200:
                     message = "Cliente não encontrado!";
                     success = false;

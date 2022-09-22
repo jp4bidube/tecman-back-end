@@ -195,7 +195,7 @@ namespace Tecman.Repository.Implementation
 
         public bool UpdateClientAddress(ClientAddress clientAddress)
         {
-            var result = _context.ClientAddress.SingleOrDefault(p => p.clientId.Equals(clientAddress.clientId));
+            var result = _context.ClientAddress.SingleOrDefault(p => p.clientId.Equals(clientAddress.clientId) && p.id.Equals(clientAddress.id));
 
             if (result != null)
             {
