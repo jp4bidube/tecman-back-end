@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tecman.Models;
 using Tecman.ValueObject;
+using Tecman.ValueObject.ClientObjects;
 
 namespace Tecman.Services
 {
@@ -12,6 +13,7 @@ namespace Tecman.Services
         Address Create(Address address);
 
         ApiMessage Update(Address address);
+        bool UpdateClientAddress(Address address, ClientAddressUpdate clientAddressUpdate);
 
         Address findById(int id);
 

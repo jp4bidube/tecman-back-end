@@ -39,6 +39,16 @@ namespace Tecman.Services.Implementation
                     success = false;
                     result = genericObject;
                     break;
+                case -200:
+                    message = "Cliente não encontrado!";
+                    success = false;
+                    result = genericObject;
+                    break;
+                case -300:
+                    message = "Endereço do cliente não encontrado!";
+                    success = false;
+                    result = genericObject;
+                    break;
                 case -401:
                     message = "Usuario ou senha inválido!";
                     success = false;

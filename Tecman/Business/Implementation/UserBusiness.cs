@@ -87,6 +87,7 @@ namespace Tecman.Business.Implementation
             user.username = userUpdate.username;
             user.password = _repository.ComputeHash(userUpdate.password, new SHA256CryptoServiceProvider()).ToString();
             user.employee = _employee.Find(userUpdate.employeeId);
+            user.employee.role = _employee.FindRoleById(userUpdate.role);
 
             ApiMessage update = _repository.Update(user);
 

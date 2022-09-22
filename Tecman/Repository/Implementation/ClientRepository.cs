@@ -50,6 +50,8 @@ namespace Tecman.Repository.Implementation
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
                 return null;
 
             }
@@ -63,6 +65,21 @@ namespace Tecman.Repository.Implementation
         public Client FindById(int id)
         {
             return _context.Client.FirstOrDefault(element => element.id.Equals(id));
+        }
+
+        public ClientAddress FindClientAddressDefault(int clientId)
+        {
+            return _context.ClientAddress.FirstOrDefault(element => element.clientId.Equals(clientId) && element.defaultAddress.Equals(true));
+        }
+
+        public List<ClientAddress> getAllClientAddressByClientId(int clientId)
+        {
+            return _context.ClientAddress.Where(prop => prop.clientId.Equals(clientId)).ToList();
+        }
+
+        public ClientAddress GetClientAddress(int clientId, int addressId)
+        {
+            return _context.ClientAddress.FirstOrDefault(element => element.clientId.Equals(clientId) && element.address.id.Equals(addressId));
         }
 
         public List<Client> GetListClientOrderByCPF(string sortDirection, int limit, int offset, string q)
@@ -174,6 +191,25 @@ namespace Tecman.Repository.Implementation
                 Success = true,
                 Result = result
             };
+        }
+
+        public bool UpdateClientAddress(ClientAddress clientAddress)
+        {
+            var result = _context.ClientAddress.SingleOrDefault(p => p.clientId.Equals(clientAddress.clientId));
+
+            if (result != null)
+            {
+                try
+                {
+                    _context.Entry(result).CurrentValues.SetValues(clientAddress);
+                    _context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

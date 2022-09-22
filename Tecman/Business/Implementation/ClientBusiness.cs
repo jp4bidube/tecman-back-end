@@ -60,7 +60,7 @@ namespace Tecman.Business.Implementation
             {
                 address = createAddress,
                 defaultAddress = clientCreate.address.defaultAddress,
-                id = createClient.id,
+                clientId = createClient.id,
             };
 
             ClientAddress createclientAddress = _repository.CreateClientAddress(clientAddress);
@@ -75,7 +75,22 @@ namespace Tecman.Business.Implementation
             return _repository.FindByCPF(cpf);
         }
 
-        public Client FindById(int id)
+        public ClientUnique FindById(int id)
+        {
+            Client client = _repository.FindById(id);
+            List<ClientAddress> clientAdress = _repository.getAllClientAddressByClientId(client.id);
+            ClientUnique clientUnique = new ClientUnique
+            {
+                phoneNumber = client.phoneNumber,
+                cpf = client.cpf,
+                name = client.name,
+                email = client.email,
+                address = clientAdress
+            };
+
+            return clientUnique;
+        }
+        public Client Find(int id)
         {
             return _repository.FindById(id);
         }
@@ -105,7 +120,38 @@ namespace Tecman.Business.Implementation
 
         public bool Update(Client client, ClientUpdate clientUpdate)
         {
-            throw new NotImplementedException();
+            client.name = clientUpdate.name;
+            client.cpf = clientUpdate.cpf;
+            client.phoneNumber = clientUpdate.phoneNumber;
+            client.email = clientUpdate.email;
+
+            ApiMessage update = _repository.Update(client);
+
+            return update.Success;
+        }
+
+        public ClientAddress GetClientAddress(int clientId, int addressId)
+        {
+           return _repository.GetClientAddress(clientId,addressId);
+        }
+
+        public bool SetDefault(ClientAddress clientAddress)
+        {
+            ClientAddress oldClientAddress = _repository.FindClientAddressDefault(clientAddress.clientId);
+
+            oldClientAddress.defaultAddress = false;
+
+            bool updateOldClientAddress = _repository.UpdateClientAddress(oldClientAddress);
+
+            if (updateOldClientAddress == false) return false;
+
+            clientAddress.defaultAddress = true;
+
+            bool updateNewClientAddress = _repository.UpdateClientAddress(oldClientAddress);
+
+            if (updateNewClientAddress == false) return false;
+
+            return true;
         }
     }
 }

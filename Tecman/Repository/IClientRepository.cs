@@ -19,5 +19,12 @@ namespace Tecman.Repository
         List<Client> GetListClientOrderByNumber(String sortDirection, int limit, int offset, String q);
         List<Client> GetListClientOrderByCPF(String sortDirection, int limit, int offset, String q);
         int CountListClient(String q);
+        ClientAddress GetClientAddress(int clientId, int addressId);
+
+        bool UpdateClientAddress(ClientAddress clientAddress);
+
+        ClientAddress FindClientAddressDefault(int clientId);
+        List<ClientAddress> getAllClientAddressByClientId(int clientId);
+
     }
 }

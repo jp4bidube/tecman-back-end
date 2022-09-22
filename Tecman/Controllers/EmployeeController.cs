@@ -41,7 +41,7 @@ namespace Tecman.Controllers
 
             Employee employee = _business.FindByCPF(employeeCreate.cpf);
 
-            if (employee != null) return BadRequest(_response.ResponseApi(101,null));
+            if (employee != null) return BadRequest(_response.ResponseApi(-101,null));
 
             bool create = _business.Create(employeeCreate);
 
@@ -120,7 +120,7 @@ namespace Tecman.Controllers
 
             Employee employee = _business.Find(id);
 
-            if (employee == null) return BadRequest(_response.ResponseApi(100, null));
+            if (employee == null) return BadRequest(_response.ResponseApi(-100, null));
 
             bool update = _business.Update(employee, employeeUpdate);
 
