@@ -6,6 +6,7 @@ using Tecman.Models;
 using Tecman.Repository;
 using Tecman.Services;
 using Tecman.ValueObject;
+using Tecman.ValueObject.EmployeeObjects;
 
 namespace Tecman.Business.Implementation
 {
@@ -107,7 +108,19 @@ namespace Tecman.Business.Implementation
             return _repository.FindByCPF(cpf);
         }
 
-        public Employee FindById(int id)
+        public EmployeeUnique FindById(int id)
+        {
+            Employee employee = _repository.FindById(id);
+            EmployeeUnique employeeUnique = new EmployeeUnique
+            {
+                employee = employee,
+                user = _user.FindByEmployeeId(employee.id)
+            };
+
+            return employeeUnique;
+        }
+
+        public Employee Find(int id)
         {
             return _repository.FindById(id);
         }

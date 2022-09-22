@@ -88,6 +88,7 @@ namespace Tecman
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<IEmployeeBusiness, EmployeeBusiness>();
             services.AddScoped<ITokenService, TokenService>();
 

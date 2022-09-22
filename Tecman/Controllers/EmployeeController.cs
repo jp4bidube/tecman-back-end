@@ -8,6 +8,7 @@ using Tecman.Business;
 using Tecman.Models;
 using Tecman.Services;
 using Tecman.ValueObject;
+using Tecman.ValueObject.EmployeeObjects;
 
 namespace Tecman.Controllers
 {
@@ -59,7 +60,7 @@ namespace Tecman.Controllers
         public async Task<IActionResult> DisableEnableUser(int id)
         {
 
-            Employee employee = _business.FindById(id);
+            Employee employee = _business.Find(id);
 
             if (employee == null) return BadRequest(_response.ResponseApi(100, null));
 
@@ -80,7 +81,7 @@ namespace Tecman.Controllers
         public async Task<IActionResult> FindById(int id)
         {
 
-            Employee employee = _business.FindById(id);
+            EmployeeUnique employee = _business.FindById(id);
 
             if (employee == null) return BadRequest(_response.ResponseApi(100, null));
 
@@ -117,7 +118,7 @@ namespace Tecman.Controllers
         public async Task<IActionResult> UpdateEmployee(int id, EmployeeUpdate employeeUpdate)
         {
 
-            Employee employee = _business.FindById(id);
+            Employee employee = _business.Find(id);
 
             if (employee == null) return BadRequest(_response.ResponseApi(100, null));
 

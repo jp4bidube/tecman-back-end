@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tecman.Models;
 using Tecman.ValueObject;
+using Tecman.ValueObject.EmployeeObjects;
 
 namespace Tecman.Business
 {
     public interface IEmployeeBusiness
     {
-        Employee FindById(int id);
+        EmployeeUnique FindById(int id);
+        Employee Find(int id);
         Employee FindByCPF(string cpf);
 
         EmployeeStatus FindEmployeeStatusById(int id);

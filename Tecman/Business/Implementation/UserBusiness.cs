@@ -49,7 +49,7 @@ namespace Tecman.Business.Implementation
                 username = userCreate.username,
                 password = userCreate.password,
                 registrationDate = DateTime.Now,
-                employee = _employee.FindById(userCreate.employeeId),
+                employee = _employee.Find(userCreate.employeeId),
             };
 
             return _repository.Create(user);
@@ -86,7 +86,7 @@ namespace Tecman.Business.Implementation
 
             user.username = userUpdate.username;
             user.password = _repository.ComputeHash(userUpdate.password, new SHA256CryptoServiceProvider()).ToString();
-            user.employee = _employee.FindById(userUpdate.employeeId);
+            user.employee = _employee.Find(userUpdate.employeeId);
 
             ApiMessage update = _repository.Update(user);
 

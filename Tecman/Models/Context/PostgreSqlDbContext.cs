@@ -27,6 +27,8 @@ namespace Tecman.Models.Context
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<Role> Role { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<ClientAddress> ClientAddress { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
