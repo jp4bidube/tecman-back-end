@@ -39,6 +39,22 @@ namespace Tecman.Repository.Implementation
             }
         }
 
+        public ClientAddress CreateClientAddress(ClientAddress clientAddress)
+        {
+            try
+            {
+                _context.Add(clientAddress);
+                _context.SaveChanges();
+
+                return clientAddress;
+            }
+            catch (Exception e)
+            {
+                return null;
+
+            }
+        }
+
         public Client FindByCPF(string cpf)
         {
             return _context.Client.FirstOrDefault(element => element.cpf.Equals(cpf));

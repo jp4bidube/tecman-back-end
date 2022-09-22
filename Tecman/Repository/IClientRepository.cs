@@ -13,6 +13,7 @@ namespace Tecman.Repository
         Client FindByCPF(string cpf);
         ApiMessage Update(Client employee);
         Client Create(Client employee);
+        ClientAddress CreateClientAddress(ClientAddress clientAddress);
         List<Client> GetListClientOrderByName(String sortDirection, int limit, int offset, String q);
         List<Client> GetListClientOrderByEmail(String sortDirection, int limit, int offset, String q);
         List<Client> GetListClientOrderByNumber(String sortDirection, int limit, int offset, String q);

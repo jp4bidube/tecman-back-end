@@ -17,7 +17,7 @@ namespace Tecman.Models
         public virtual Address address { get; set; }
 
         [Column("default")]
-        public bool defaultAddress { get; set; }
+        public bool? defaultAddress { get; set; }
 
     }
 }

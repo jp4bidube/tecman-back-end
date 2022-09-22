@@ -68,7 +68,7 @@ namespace Tecman.Business.Implementation
 
             Employee employee = _repository.Create(employeeNew);
 
-            if (employee.id == null) return false;
+            if (employee == null) return false;
 
             if(employeeCreate.employeeUser.login == true)
             {
@@ -113,7 +113,15 @@ namespace Tecman.Business.Implementation
             Employee employee = _repository.FindById(id);
             EmployeeUnique employeeUnique = new EmployeeUnique
             {
-                employee = employee,
+                address = employee.address,
+                employeeStatus = employee.employeeStatus,
+                avatarUrl = employee.avatarUrl,
+                birthDate = employee.birthDate,
+                cpf = employee.cpf,
+                email = employee.email,
+                name = employee.name,
+                phoneNumber = employee.phoneNumber,
+                role = employee.role,
                 user = _user.FindByEmployeeId(employee.id)
             };
 

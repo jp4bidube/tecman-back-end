@@ -12,5 +12,6 @@ namespace Tecman.ValueObject
         public string number { get; set; }
         public string district { get; set; }
         public string? complement { get; set; }
+        public bool? defaultAddress { get; set; }
     }
 }
