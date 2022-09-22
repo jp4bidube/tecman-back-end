@@ -195,7 +195,7 @@ namespace Tecman.Controllers
         [HttpPost]
         [Produces("application/json")]
         [Route("Recovery")]
-        [ProducesResponseType((200), Type = typeof(User))]
+        [ProducesResponseType((200), Type = typeof(NewPassword))]
         [ProducesResponseType(401)]
         public async Task<IActionResult> RecoveryPassword(RecoveryPassword recoveryPassword)
         {
@@ -210,7 +210,26 @@ namespace Tecman.Controllers
 
             if(employee.id != user.employee.id) return BadRequest(_response.ResponseApi(-102, null));
 
-            return Ok(_response.ResponseApi(0, null));
+            // Generate Claim, input user guid to JWT
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
+                //TODO employee.name
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.username),
+                new Claim(JwtRegisteredClaimNames.NameId, user.id.ToString())
+            };
+
+            var accessToken = _token.GenerateAccessToken(claims);
+
+            var newPassword = new NewPassword
+            {
+                employeeId = employee.id,
+                userId = user.id,
+                username = user.username,
+                recoveryToken = accessToken
+            }; 
+
+            return Ok(_response.ResponseApi(0, newPassword));
 
         }
     }
