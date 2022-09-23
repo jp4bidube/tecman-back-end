@@ -7,7 +7,11 @@ namespace Tecman.ValueObject.ClientObjects
 {
     public class ClientAddressUpdate
     {
-        public virtual AddressObject address { get; set; }
-
+        public string street { get; set; }
+        public string? cep { get; set; }
+        public string number { get; set; }
+        public string district { get; set; }
+        public string? complement { get; set; }
     }
+
 }

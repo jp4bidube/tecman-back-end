@@ -99,13 +99,13 @@ namespace Tecman.Controllers
         [HttpPut]
         [Produces("application/json")]
         [Authorize("Bearer")]
-        [Route("client-address/{id}")]
+        [Route("client-address/{addressId}")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> editClientAddress(int id, ClientAddressUpdate clientAddressUpdate)
+        public async Task<IActionResult> editClientAddress(int addressId, ClientAddressUpdate clientAddressUpdate)
         {
-            Address address = _address.findById(id);
+            Address address = _address.findById(addressId);
 
             if (address == null) return BadRequest(_response.ResponseApi(-300, null));
 
@@ -120,11 +120,11 @@ namespace Tecman.Controllers
         [HttpPost]
         [Produces("application/json")]
         [Authorize("Bearer")]
-        [Route("client-address/{id}")]
+        [Route("client-address/{clientId}")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> creatClientAddress(int id , AddressObject clientAddressUpdate)
+        public async Task<IActionResult> creatClientAddress(int clientId, AddressObject clientAddressUpdate)
         {
             Address address = _address.Create(new Address {
                 street = clientAddressUpdate.street,
@@ -136,7 +136,7 @@ namespace Tecman.Controllers
 
             if (address == null) return BadRequest(_response.ResponseApi(-2, null));
 
-            ClientAddress clientAddress = _business.CreateClientAddress(address.id, id);
+            ClientAddress clientAddress = _business.CreateClientAddress(address.id, clientId);
 
             if (clientAddress == null) return BadRequest(_response.ResponseApi(-2, null));
 

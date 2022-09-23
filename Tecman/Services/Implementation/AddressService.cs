@@ -35,11 +35,11 @@ namespace Tecman.Services.Implementation
 
         public bool UpdateClientAddress(Address address, ClientAddressUpdate clientAddressUpdate)
         {
-            address.cep = clientAddressUpdate.address.cep;
-            address.street = clientAddressUpdate.address.street;
-            address.district = clientAddressUpdate.address.district;
-            address.number = clientAddressUpdate.address.number;
-            address.complement = clientAddressUpdate.address.complement;
+            address.cep = clientAddressUpdate.cep;
+            address.street = clientAddressUpdate.street;
+            address.district = clientAddressUpdate.district;
+            address.number = clientAddressUpdate.number;
+            address.complement = clientAddressUpdate.complement;
 
             ApiMessage update = _repository.Update(address);
 
