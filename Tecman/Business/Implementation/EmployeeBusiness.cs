@@ -177,7 +177,7 @@ namespace Tecman.Business.Implementation
             employee.role = _repository.FindRoleById(employeeUpdate.role);
             employee.phoneNumber = employeeUpdate.phoneNumber;
             employee.avatarUrl = employeeUpdate.avatarUrl;
-            employee.email = employee.email;
+            employee.email = employeeUpdate.email;
             employee.birthDate = employeeUpdate.birthDate;
 
             if(employee.address != null)

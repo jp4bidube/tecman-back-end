@@ -115,6 +115,11 @@ namespace Tecman.Business.Implementation
             {
                 return null;
             }
+            //Tecnico nao Loga
+            if (user.employee.role.id == 4)
+            {
+                return null;
+            }
 
             if (user.registrationDate > DateTime.Now)
             {
