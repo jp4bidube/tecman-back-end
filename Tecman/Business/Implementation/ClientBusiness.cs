@@ -81,6 +81,7 @@ namespace Tecman.Business.Implementation
             List<ClientAddress> clientAdress = _repository.getAllClientAddressByClientId(client.id);
             ClientUnique clientUnique = new ClientUnique
             {
+                id = client.id,
                 phoneNumber = client.phoneNumber,
                 cpf = client.cpf,
                 name = client.name,

@@ -8,6 +8,7 @@ namespace Tecman.ValueObject.ClientObjects
 {
     public class ClientUnique
     {
+        public int id { get; set; }
         public string name { get; set; }
         public string cpf { get; set; }
         public string phoneNumber { get; set; }
