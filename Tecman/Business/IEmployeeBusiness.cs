@@ -24,7 +24,9 @@ namespace Tecman.Business
         bool Create(EmployeeCreate employeeCreate);
         bool Update(Employee employee,EmployeeUpdate employeeUpdate);
 
+        List<Employee> GetListTecnic(String sortDirection, int limit, int offset, String search, String sort);
         List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String search, String sort);
         int CountListEmployee(String search);
+        int CountListTecnic(String search);
     }
 }

@@ -33,6 +33,12 @@ namespace Tecman.Business.Implementation
             return _repository.CountListEmployee(search);
         }
 
+        public int CountListTecnic(string search)
+        {
+            return _repository.CountListTecnic(search);
+        }
+
+
         public bool Create(EmployeeCreate employeeCreate)
         {
             Address address = null;
@@ -143,6 +149,33 @@ namespace Tecman.Business.Implementation
         {
             return _repository.FindRoleById(id);
         }
+
+        public List<Employee> GetListTecnic(String sortDirection, int limit, int offset, String search, String sort)
+        {
+            switch (sort)
+            {
+                case "name":
+                    return _repository.GetListTecnicOrderByName(sortDirection, limit, offset, search);
+                    break;
+                case "cpf":
+                    return _repository.GetListTecnicOrderByCPF(sortDirection, limit, offset, search);
+                    break;
+                case "status":
+                    return _repository.GetListTecnicOrderByStatus(sortDirection, limit, offset, search);
+                    break;
+                case "role":
+                    return _repository.GetListTecnicOrderByRole(sortDirection, limit, offset, search);
+                    break;
+                case "email":
+                    return _repository.GetListTecnicOrderByEmail(sortDirection, limit, offset, search);
+                    break;
+                default:
+                    return _repository.GetListTecnicOrderByName(sortDirection, limit, offset, search);
+                    break;
+
+            }
+        }
+
 
         public List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String search, String sort)
         {

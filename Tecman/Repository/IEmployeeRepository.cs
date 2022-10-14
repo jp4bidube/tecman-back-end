@@ -20,11 +20,17 @@ namespace Tecman.Repository
 
         Employee Create(Employee employee);
         List<Employee> GetListEmployeeOrderByName(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListTecnicOrderByName(String sortDirection, int limit, int offset, String q);
         List<Employee> GetListEmployeeOrderByEmail(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListTecnicOrderByEmail(String sortDirection, int limit, int offset, String q);
         List<Employee> GetListEmployeeOrderByRole(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListTecnicOrderByRole(String sortDirection, int limit, int offset, String q);
         List<Employee> GetListEmployeeOrderByStatus(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListTecnicOrderByStatus(String sortDirection, int limit, int offset, String q);
         List<Employee> GetListEmployeeOrderByCPF(String sortDirection, int limit, int offset, String q);
+        List<Employee> GetListTecnicOrderByCPF(String sortDirection, int limit, int offset, String q);
         int CountListEmployee(String q);
+        int CountListTecnic(String q);
 
     }
 }
