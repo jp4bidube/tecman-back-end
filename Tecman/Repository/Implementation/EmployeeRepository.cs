@@ -24,7 +24,7 @@ namespace Tecman.Repository.Implementation
         {
             return _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q) && prop.role.id != 4).Count();
         }
-        public int CountListTecnicCountListTecnic(string q)
+        public int CountListTecnic(string q)
         {
             return _context.Employee.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q) && prop.role.id == 4).Count();
         }
