@@ -35,12 +35,17 @@ namespace Tecman.Services.Implementation
                     result = genericObject;
                     break;
                 case -101:
-                    message = "CPF já vinculado a outro funcionario!";
+                    message = "Este username já existe para outro funcionario!";
                     success = false;
                     result = genericObject;
                     break;
                 case -102:
                     message = "CPF e nome de usuario não coincidem no cadastro!";
+                    success = false;
+                    result = genericObject;
+                    break;
+                case -111:
+                    message = "Este Funcionario ja possui um usuario vinculado!";
                     success = false;
                     result = genericObject;
                     break;

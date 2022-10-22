@@ -34,6 +34,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tecman.ValueObject.UserObject;
 using Microsoft.AspNetCore.Authentication;
+using Tecman.ValueObject.EmployeeObjects;
 
 namespace Tecman.Controllers
 {
@@ -67,6 +68,10 @@ namespace Tecman.Controllers
             User user = _business.FindByUsername(userCreate.username);
 
             if (user != null) return BadRequest(_response.ResponseApi(101, null));
+
+            User user2 = _business.FindByEmployeeId(userCreate.employeeId);
+
+            if(user2 != null) return BadRequest(_response.ResponseApi(111, null));
 
             ApiMessage create = _business.Create(userCreate);
 
@@ -204,11 +209,9 @@ namespace Tecman.Controllers
 
             if (employee == null) return BadRequest(_response.ResponseApi(-100, null));
 
-            User user = _business.FindByUsername(recoveryPassword.username);
+            User user = _business.FindByEmployeeId(employee.id);
 
-            if (user == null) return BadRequest(_response.ResponseApi(-100, null));
-
-            if(employee.id != user.employee.id) return BadRequest(_response.ResponseApi(-102, null));
+            if (user.id == null) return BadRequest(_response.ResponseApi(-100, null));
 
             // Generate Claim, input user guid to JWT
             var claims = new List<Claim>
