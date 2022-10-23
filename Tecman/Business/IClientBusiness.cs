@@ -11,7 +11,7 @@ namespace Tecman.Business
     {
         ClientUnique FindById(int id);
         Client Find(int id);
-        Client FindByCPF(string cpf);
+        ClientUnique FindByCPF(string cpf);
 
         bool Create(ClientCreate clientCreate);
         ClientAddress CreateClientAddress(int addressId, int clientId);

@@ -160,7 +160,7 @@ namespace Tecman.Controllers
         public async Task<IActionResult> Create(ClientCreate clientCreate)
         {
 
-            Client client = _business.FindByCPF(clientCreate.cpf);
+            ClientUnique client = _business.FindByCPF(clientCreate.cpf);
 
             if (client != null) return BadRequest(_response.ResponseApi(-201, null));
 
@@ -182,6 +182,23 @@ namespace Tecman.Controllers
         public async Task<IActionResult> FindById(int id)
         {
             ClientUnique client = _business.FindById(id);
+
+            if (client == null) return BadRequest(_response.ResponseApi(100, null));
+
+            return Ok(_response.ResponseApi(0, client));
+
+        }
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("cpf/{cpf}")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> FindByCPF(string cpf)
+        {
+            ClientUnique client = _business.FindByCPF(cpf);
 
             if (client == null) return BadRequest(_response.ResponseApi(100, null));
 

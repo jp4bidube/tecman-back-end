@@ -31,7 +31,7 @@ namespace Tecman.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]

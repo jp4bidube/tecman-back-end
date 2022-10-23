@@ -70,9 +70,24 @@ namespace Tecman.Business.Implementation
             return true;
         }
 
-        public Client FindByCPF(string cpf)
+        public ClientUnique FindByCPF(string cpf)
         {
-            return _repository.FindByCPF(cpf);
+            Client client = _repository.FindByCPF(cpf);
+
+            if (client == null) return null;
+
+            List<ClientAddress> clientAdress = _repository.getAllClientAddressByClientId(client.id);
+            ClientUnique clientUnique = new ClientUnique
+            {
+                id = client.id,
+                phoneNumber = client.phoneNumber,
+                cpf = client.cpf,
+                name = client.name,
+                email = client.email,
+                address = clientAdress
+            };
+
+            return clientUnique;
         }
 
         public ClientUnique FindById(int id)
