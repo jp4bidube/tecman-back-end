@@ -21,6 +21,8 @@ namespace Tecman.Business
         bool DisableEnableEmployee(Employee employee);
         bool UpdateAddressEmployee(Employee employee, AddressObject addressObject);
 
+        List<TecnicListSelect> ListTecnicSelect();
+
         bool Create(EmployeeCreate employeeCreate);
         bool Update(Employee employee,EmployeeUpdate employeeUpdate);
 

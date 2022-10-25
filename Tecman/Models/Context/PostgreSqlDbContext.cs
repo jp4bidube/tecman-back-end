@@ -32,7 +32,7 @@ namespace Tecman.Models.Context
         public DbSet<OrderService> OrderService { get; set; }
         public DbSet<OrderServiceStatus> OrderServiceStatus { get; set; }
         public DbSet<TechnicalVisit> TechnicalVisit { get; set; }
-        public DbSet<Warranty> Warranty { get; set; }
+        public DbSet<Equipment> Equipment { get; set; }
         public DbSet<Piece> Piece { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

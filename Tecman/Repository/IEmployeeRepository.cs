@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tecman.Models;
 using Tecman.ValueObject;
+using Tecman.ValueObject.EmployeeObjects;
 
 namespace Tecman.Repository
 {
@@ -17,6 +18,9 @@ namespace Tecman.Repository
         Role FindRoleById(int id);
 
         ApiMessage Update(Employee employee);
+
+        List<TecnicListSelect> ListTecnicSelect();
+
 
         Employee Create(Employee employee);
         List<Employee> GetListEmployeeOrderByName(String sortDirection, int limit, int offset, String q);

@@ -23,9 +23,13 @@ namespace Tecman.Models
         [Column("servico_executado")]
         public string? serviceExecuted { get; set; }
 
-        [Column("garantia_id")]
-        [ForeignKey("garantia_id")]
-        public virtual Warranty Warranty { get; set; }
+        [Column("equipamento_id")]
+        [ForeignKey("equipamento_id")]
+        public virtual Equipment Equipment { get; set; }
+
+        [Column("tecnico_id")]
+        [ForeignKey("tecnico_id")]
+        public virtual Employee Employee { get; set; }
 
     }
 }

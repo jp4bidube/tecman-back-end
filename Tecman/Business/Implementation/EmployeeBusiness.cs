@@ -70,6 +70,7 @@ namespace Tecman.Business.Implementation
                 phoneNumber = employeeCreate.phoneNumber,
                 registrationDate = DateTime.Now,
                 role = _repository.FindRoleById(employeeCreate.role)
+                
             };
 
             Employee employee = _repository.Create(employeeNew);
@@ -254,6 +255,11 @@ namespace Tecman.Business.Implementation
 
             return update.Success;
 
+        }
+
+        public List<TecnicListSelect> ListTecnicSelect()
+        {
+           return _repository.ListTecnicSelect();
         }
     }
 }

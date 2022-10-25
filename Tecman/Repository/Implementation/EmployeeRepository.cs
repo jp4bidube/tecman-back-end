@@ -7,6 +7,7 @@ using Tecman.Models.Context;
 using Tecman.Services;
 using Tecman.ValueObject;
 using System.Linq.Dynamic;
+using Tecman.ValueObject.EmployeeObjects;
 
 namespace Tecman.Repository.Implementation
 {
@@ -313,6 +314,9 @@ namespace Tecman.Repository.Implementation
             };
         }
 
-
+        public List<TecnicListSelect> ListTecnicSelect()
+        {
+            return _context.Employee.Select(prop => new TecnicListSelect { id= prop.id, name = prop.name }).ToList();
+        }
     }
 }

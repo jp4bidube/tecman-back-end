@@ -17,11 +17,27 @@ namespace Tecman.Repository.Implementation
             _response = response;
             _context = context;
         }
-        public bool Create(OrderService order)
+        public OrderService Create(OrderService order)
         {
             try
             {
                 _context.Add(order);
+                _context.SaveChanges();
+
+                return order;
+            }
+            catch (Exception e)
+            {
+                return null;
+
+            }
+        }
+
+        public bool CreateEquipment(Equipment equipment)
+        {
+            try
+            {
+                _context.Add(equipment);
                 _context.SaveChanges();
 
                 return true;
@@ -31,6 +47,11 @@ namespace Tecman.Repository.Implementation
                 return false;
 
             }
+        }
+
+        public OrderService FindById(int id)
+        {
+            return _context.OrderService.Find(id);
         }
 
         public OrderServiceStatus OrderServiceStatusFindById(int id)

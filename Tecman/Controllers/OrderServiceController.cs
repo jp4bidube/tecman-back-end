@@ -9,6 +9,7 @@ using Tecman.Business;
 using Tecman.Models;
 using Tecman.Services;
 using Tecman.ValueObject;
+using Tecman.ValueObject.OrderServiceObjects;
 
 namespace Tecman.Controllers
 {
@@ -46,12 +47,37 @@ namespace Tecman.Controllers
 
             orderServiceCreate.userLogged = user.employee;
 
-            bool create = _business.Create(orderServiceCreate);
+            OrderService create = _business.Create(orderServiceCreate);
 
-            if (!create) return BadRequest(_response.ResponseApi(301,null));
+            if (create == null) return BadRequest(_response.ResponseApi(301,null));
 
             return Ok(_response.ResponseApi(0, null));
 
+        }
+
+        [HttpPatch]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> CompleteOrderService(OrderServiceComplete orderServiceComplete)
+        {
+            return Ok();
+
+        }
+
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("{id}")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(_response.ResponseApi(0, _business.FindById(id)));
         }
 
     }

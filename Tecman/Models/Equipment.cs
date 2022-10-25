@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Tecman.Models
 {
-    [Table("garantia")]
-    public class Warranty
+    [Table("equipamento")]
+    public class Equipment
     {
         [Key]
         [Column("id")]
@@ -16,13 +16,13 @@ namespace Tecman.Models
 
         [Column("ordem_servico_id")]
         [ForeignKey("ordem_servico_id")]
-        public virtual OrderService? OrderService { get; set; }
+        public virtual OrderService? orderService { get; set; }
 
         [Column("prazo")]
         public DateTime? warrantyPeriod { get; set; }
 
         [Column("marca")]
-        public string? mark { get; set; }
+        public string? brand { get; set; }
 
         [Column("modelo")]
         public string? model { get; set; }

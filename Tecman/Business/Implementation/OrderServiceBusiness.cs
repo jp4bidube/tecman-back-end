@@ -6,6 +6,7 @@ using Tecman.Models;
 using Tecman.Repository;
 using Tecman.Services;
 using Tecman.ValueObject;
+using Tecman.ValueObject.OrderServiceObjects;
 
 namespace Tecman.Business.Implementation
 {
@@ -30,7 +31,7 @@ namespace Tecman.Business.Implementation
 
         }
 
-        public bool Create(OrderServiceCreate orderServiceCreate)
+        public OrderService Create(OrderServiceCreate orderServiceCreate)
         {
 
         OrderService orderService = new OrderService
@@ -47,12 +48,40 @@ namespace Tecman.Business.Implementation
                 dateCreated = DateTime.Now,
                 observacao = orderServiceCreate.observacao,
                 orderServiceStatus = _repository.OrderServiceStatusFindById(1),
-                device_qtd = orderServiceCreate.devices.Length,            
+                device_qtd = orderServiceCreate.devices.Length.ToString(),     
+                                
             };
 
+            OrderService os = _repository.Create(orderService);
 
+            if (os == null) return null;
 
-            return _repository.Create(orderService);
+            try
+            {
+                foreach (EquipmentOSObject device in orderServiceCreate.devices)
+                {
+                    Equipment equipment = new Equipment
+                    {
+                        brand = device.brand,
+                        equipment = device.type,
+                        model = device.model,
+                        orderService = os,
+                    };
+
+                    bool equipCreate = _repository.CreateEquipment(equipment);
+                }
+            }
+            catch
+            {
+                return null;
+            }
+
+            return os;
+        }
+
+        public OrderService FindById(int id)
+        {
+            return _repository.FindById(id);
         }
     }
 }

@@ -168,6 +168,7 @@ namespace Tecman
             // Swagger API
             services.AddSwaggerGen(c =>
             {
+
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {

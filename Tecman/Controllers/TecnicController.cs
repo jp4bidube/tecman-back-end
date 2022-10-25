@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,18 @@ namespace Tecman.Controllers
             Response.Headers.Add("X-Total-Count", _business.CountListEmployee(search.ToUpper()).ToString());
             return Ok(_response.ResponseApi(0, employee));
 
+        }
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("ListTenicSelect")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> ListTecnicSelect()
+        {
+            return Ok(_response.ResponseApi(0, _business.ListTecnicSelect()));
         }
 
     }

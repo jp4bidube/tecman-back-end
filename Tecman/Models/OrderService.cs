@@ -47,7 +47,7 @@ namespace Tecman.Models
         public string? observacao { get; set; }
 
         [Column("aparelhos_qtd")]
-        public int?  device_qtd{ get; set; }
+        public string?  device_qtd{ get; set; }
 
         [Column("peca_vendida")]
         public bool? pieceSold { get; set; }
@@ -56,13 +56,13 @@ namespace Tecman.Models
         public string? defect { get; set; }
 
         [Column("cliente_peca")]
-        public bool? clientePiece { get; set; }
+        public bool? clientPiece { get; set; }
 
         [Column("orcamento")]
-        public string? budget { get; set; }
+        public decimal? budget { get; set; }
 
         [Column("valor_recebido")]
-        public string? amountReceived { get; set; }
+        public decimal? amountReceived { get; set; }
 
         [Column("data_pagamento")]
         public DateTime? datePayment { get; set; }

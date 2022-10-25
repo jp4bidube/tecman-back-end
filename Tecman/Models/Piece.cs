@@ -32,8 +32,8 @@ namespace Tecman.Models
         [ForeignKey("ordem_servico_id")]
         public virtual OrderService? OrderService { get; set; }
 
-        [Column("garantia_id")]
-        [ForeignKey("garantia_id")]
-        public virtual Warranty? Warranty { get; set; }
+        [Column("equipamento_id")]
+        [ForeignKey("equipamento_id")]
+        public virtual Equipment? Equipment { get; set; }
     }
 }

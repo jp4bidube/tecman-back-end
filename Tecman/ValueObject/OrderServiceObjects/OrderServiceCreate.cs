@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Tecman.Models;
+using Tecman.ValueObject.OrderServiceObjects;
 
 namespace Tecman.ValueObject
 {
@@ -18,7 +19,7 @@ namespace Tecman.ValueObject
         public string? complement { get; set; }
         public string? observacao { get; set; }
         public string? defect { get; set; }
-        public string[] devices { get; set; }
+        public EquipmentOSObject[]? devices { get; set; }
         [JsonIgnore]
         public Employee userLogged { get; set; }
 
