@@ -58,11 +58,14 @@ namespace Tecman.Controllers
         [HttpPatch]
         [Produces("application/json")]
         [Authorize("Bearer")]
+        [Route("{id}")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
-        public async Task<IActionResult> CompleteOrderService(OrderServiceComplete orderServiceComplete)
+        public async Task<IActionResult> CompleteOrderService(OrderServiceComplete orderServiceComplete, int id)
         {
+            orderServiceComplete.id = id;
+
             return Ok(_business.CompleteOrderService(orderServiceComplete));
         }
 

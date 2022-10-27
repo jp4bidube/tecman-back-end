@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Tecman.ValueObject.OrderServiceObjects
 {
     public class OrderServiceComplete
     {
+        [JsonIgnore]
         public int id { get; set; }
         public int tecnicId { get; set; }
         public string serviceExecuted { get; set; }
