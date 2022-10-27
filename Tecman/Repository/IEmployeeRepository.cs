@@ -36,5 +36,6 @@ namespace Tecman.Repository
         int CountListEmployee(String q);
         int CountListTecnic(String q);
 
+
     }
 }

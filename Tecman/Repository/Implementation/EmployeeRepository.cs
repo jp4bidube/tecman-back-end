@@ -316,7 +316,7 @@ namespace Tecman.Repository.Implementation
 
         public List<TecnicListSelect> ListTecnicSelect()
         {
-            return _context.Employee.Select(prop => new TecnicListSelect { id= prop.id, name = prop.name }).ToList();
+            return _context.Employee.Where(prop => prop.role.id == 4).Select(prop => new TecnicListSelect { id= prop.id, name = prop.name }).ToList();
         }
     }
 }

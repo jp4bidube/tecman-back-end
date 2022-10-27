@@ -63,8 +63,7 @@ namespace Tecman.Controllers
         [ProducesResponseType(401)]
         public async Task<IActionResult> CompleteOrderService(OrderServiceComplete orderServiceComplete)
         {
-            return Ok();
-
+            return Ok(_business.CompleteOrderService(orderServiceComplete));
         }
 
 
@@ -80,5 +79,25 @@ namespace Tecman.Controllers
             return Ok(_response.ResponseApi(0, _business.FindById(id)));
         }
 
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> Get([FromQuery] String sort, [FromQuery] String order, [FromQuery] int limit, [FromQuery] int offset, [FromQuery] String search)
+        {
+            if (order == null || limit == null || offset == null || sort == null) return BadRequest(_response.ResponseApi(1, null));
+
+            if (search == null) search = "";
+
+            List<OrderService> OS = _business.GetListOrderService(order, limit, offset, search.ToUpper(), sort);
+
+
+            Response.Headers.Add("X-Total-Count", _business.CountListOrderService(search.ToUpper()).ToString());
+            return Ok(_response.ResponseApi(0, OS));
+
+        }
     }
 }
