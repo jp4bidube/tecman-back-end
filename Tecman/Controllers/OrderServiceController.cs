@@ -66,6 +66,10 @@ namespace Tecman.Controllers
         {
             orderServiceComplete.id = id;
 
+            bool exist = _business.Find(id);
+
+            if (!exist) return BadRequest(_response.ResponseApi(-150,null));
+
             return Ok(_business.CompleteOrderService(orderServiceComplete));
         }
 
@@ -99,6 +103,27 @@ namespace Tecman.Controllers
 
 
             Response.Headers.Add("X-Total-Count", _business.CountListOrderService(search.ToUpper()).ToString());
+            return Ok(_response.ResponseApi(0, OS));
+
+        }
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("cliente/{clientId}")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> GetClient([FromQuery] String sort, [FromQuery] String order, [FromQuery] int limit, [FromQuery] int offset, [FromQuery] String search, int clientId)
+        {
+            if (order == null || limit == null || offset == null || sort == null) return BadRequest(_response.ResponseApi(1, null));
+
+            if (search == null) search = "";
+
+            List<OrderService> OS = _business.GetListOrderServiceByClientId(order, limit, offset, search.ToUpper(), sort, clientId);
+
+
+            Response.Headers.Add("X-Total-Count", _business.CountListOrderServiceByClient(search.ToUpper()).ToString());
             return Ok(_response.ResponseApi(0, OS));
 
         }

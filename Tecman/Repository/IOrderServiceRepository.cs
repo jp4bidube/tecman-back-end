@@ -17,10 +17,15 @@ namespace Tecman.Repository
         bool UpdateOs(OrderService orderService);
         bool UpdateEquipment(Equipment equipment);
         public int CountListOrderService(string search);
+        public int CountListOrderServiceByClient(string search);
         List<OrderService> GetListOrderServiceOrderById(String sortDirection, int limit, int offset, String q);
         List<OrderService> GetListOrderServiceByEndereco(String sortDirection, int limit, int offset, String q);
         List<OrderService> GetListOrderServiceByTelefone(String sortDirection, int limit, int offset, String q);
         List<OrderService> GetListOrderServiceByStatus(String sortDirection, int limit, int offset, String q);
+        List<OrderService> GetListOrderServiceByClientIdOrderByDateCreated(string sortDirection, int limit, int offset, string q, int clientId);
+        List<OrderService> GetListOrderServiceByClientIdOrderByStatus(string sortDirection, int limit, int offset, string q, int clientId);
+        List<OrderService> GetListOrderServiceByClientIdOrderById(string sortDirection, int limit, int offset, string q, int clientId);
+
 
     }
 }

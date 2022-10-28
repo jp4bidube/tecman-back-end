@@ -13,10 +13,17 @@ namespace Tecman.Business
         public OrderService Create(OrderServiceCreate orderServiceCreate);
 
         public OrderServiceUnique FindById(int id);
+        public bool Find(int id);
 
         public bool CompleteOrderService(OrderServiceComplete orderServiceComplete);
 
         List<OrderService> GetListOrderService(String sortDirection, int limit, int offset, String search, String sort);
+
+        List<OrderService> GetListOrderServiceByClientId(string sortDirection, int limit, int offset, string search, string sort, int clientId);
+
         int CountListOrderService(String search);
+
+        int CountListOrderServiceByClient(string search);
+
     }
 }

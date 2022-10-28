@@ -49,6 +49,11 @@ namespace Tecman.Services.Implementation
                     success = false;
                     result = genericObject;
                     break;
+                case -150:
+                    message = "Ordem de serviço não encontrada!";
+                    success = false;
+                    result = genericObject;
+                    break;
                 case -200:
                     message = "Cliente não encontrado!";
                     success = false;

@@ -71,6 +71,13 @@ namespace Tecman.Business.Implementation
 
         }
 
+        public int CountListOrderServiceByClient(string search)
+        {
+            return _repository.CountListOrderServiceByClient(search);
+
+        }
+
+
         public OrderService Create(OrderServiceCreate orderServiceCreate)
         {
 
@@ -117,6 +124,14 @@ namespace Tecman.Business.Implementation
             }
 
             return os;
+        }
+
+        public bool Find(int id)
+        {
+            if (_repository.FindById(id) == null) return false;
+
+            return true;
+
         }
 
         public OrderServiceUnique FindById(int id)
@@ -201,6 +216,27 @@ namespace Tecman.Business.Implementation
                     break;
                 default:
                     return _repository.GetListOrderServiceOrderById(sortDirection, limit, offset, search);
+                    break;
+
+            }
+
+        }
+
+        public List<OrderService> GetListOrderServiceByClientId(string sortDirection, int limit, int offset, string search, string sort, int clientId)
+        {
+            switch (sort)
+            {
+                case "os":
+                    return _repository.GetListOrderServiceByClientIdOrderById(sortDirection, limit, offset, search, clientId);
+                    break;
+                case "status":
+                    return _repository.GetListOrderServiceByClientIdOrderByStatus(sortDirection, limit, offset, search, clientId);
+                    break;
+                case "dataCriacao":
+                    return _repository.GetListOrderServiceByClientIdOrderByDateCreated(sortDirection, limit, offset, search, clientId);
+                    break;
+                default:
+                    return _repository.GetListOrderServiceByClientIdOrderById(sortDirection, limit, offset, search, clientId);
                     break;
 
             }

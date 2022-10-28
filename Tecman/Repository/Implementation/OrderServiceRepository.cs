@@ -20,8 +20,14 @@ namespace Tecman.Repository.Implementation
 
         public int CountListOrderService(string q)
         {
-            return _context.OrderService.Where(prop => prop.id.ToString().Contains(q)).Count();
+            return _context.OrderService.Where(prop => prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)).Count();
         }
+
+        public int CountListOrderServiceByClient(string q)
+        {
+            return _context.OrderService.Where(prop => prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)).Count();
+        }
+
 
         public OrderService Create(OrderService order)
         {
@@ -70,24 +76,158 @@ namespace Tecman.Repository.Implementation
             return _context.Equipment.Where(prop => prop.orderService.id.Equals(id)).ToList();
         }
 
+        public List<OrderService> GetListOrderServiceByClientIdOrderById(string sortDirection, int limit, int offset, string q, int clientId)
+        {
+            if (sortDirection == "desc")
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)) && prop.client.id.Equals(clientId))
+                    .OrderByDescending(prop => prop.id)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+            else
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)) && prop.client.id.Equals(clientId))
+                    .OrderBy(prop => prop.id)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+        }
+
+        public List<OrderService> GetListOrderServiceByClientIdOrderByStatus(string sortDirection, int limit, int offset, string q, int clientId)
+        {
+            if (sortDirection == "desc")
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)) && prop.client.id.Equals(clientId))
+                    .OrderByDescending(prop => prop.orderServiceStatus.status)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+            else
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)) && prop.client.id.Equals(clientId))
+                    .OrderBy(prop => prop.orderServiceStatus.status)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+        }
+        public List<OrderService> GetListOrderServiceByClientIdOrderByDateCreated(string sortDirection, int limit, int offset, string q, int clientId)
+        {
+            if (sortDirection == "desc")
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)) && prop.client.id.Equals(clientId))
+                    .OrderByDescending(prop => prop.dateCreated)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+            else
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)) && prop.client.id.Equals(clientId))
+                    .OrderBy(prop => prop.dateCreated)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+        }
         public List<OrderService> GetListOrderServiceByEndereco(string sortDirection, int limit, int offset, string q)
         {
-            throw new NotImplementedException();
+
+            if (sortDirection == "desc")
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderByDescending(prop => prop.street)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+            else
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderBy(prop => prop.street)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
         }
 
         public List<OrderService> GetListOrderServiceByStatus(string sortDirection, int limit, int offset, string q)
         {
-            throw new NotImplementedException();
+
+            if (sortDirection == "desc")
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderByDescending(prop => prop.orderServiceStatus.status)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+            else
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderBy(prop => prop.orderServiceStatus.status)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
         }
 
         public List<OrderService> GetListOrderServiceByTelefone(string sortDirection, int limit, int offset, string q)
         {
-            throw new NotImplementedException();
+            if (sortDirection == "desc")
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderByDescending(prop => prop.client.phoneNumber)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+            else
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderBy(prop => prop.client.phoneNumber)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
         }
 
         public List<OrderService> GetListOrderServiceOrderById(string sortDirection, int limit, int offset, string q)
         {
-            throw new NotImplementedException();
+            if (sortDirection == "desc")
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderByDescending(prop => prop.id)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
+            else
+            {
+                List<OrderService> orderService = _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)))
+                    .OrderBy(prop => prop.id)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return orderService;
+            }
         }
 
         public OrderServiceStatus OrderServiceStatusFindById(int id)
