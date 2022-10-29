@@ -83,6 +83,10 @@ namespace Tecman.Controllers
         [ProducesResponseType(401)]
         public async Task<IActionResult> GetById(int id)
         {
+            bool exist = _business.Find(id);
+
+            if (!exist) return BadRequest(_response.ResponseApi(-150, null));
+
             return Ok(_response.ResponseApi(0, _business.FindById(id)));
         }
 
@@ -126,6 +130,25 @@ namespace Tecman.Controllers
             Response.Headers.Add("X-Total-Count", _business.CountListOrderServiceByClient(search.ToUpper()).ToString());
             return Ok(_response.ResponseApi(0, OS));
 
+        }
+
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("equipment-warrant/{equipmentId}")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> GetEquipmentById(int equipmentId)
+        {
+            // EquipmentUnique exist = _business.FindVisitEquipmentById(id);
+
+            //if (!exist) return BadRequest(_response.ResponseApi(-150, null));
+
+            //return Ok(_response.ResponseApi(0, _business.FindById(id)));
+
+            return Ok();
         }
     }
 }
