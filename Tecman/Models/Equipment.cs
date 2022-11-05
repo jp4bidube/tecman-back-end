@@ -31,7 +31,7 @@ namespace Tecman.Models
         public string? equipment { get; set; }
 
         [Column("meses_garantia")]
-        public string? mounthsWarranty { get; set; }
+        public int? mounthsWarranty { get; set; }
 
 
     }

@@ -44,6 +44,11 @@ namespace Tecman.Services.Implementation
                     success = false;
                     result = genericObject;
                     break;
+                case -103:
+                    message = "CPF já cadastro para outro funcionario!";
+                    success = false;
+                    result = genericObject;
+                    break;
                 case -111:
                     message = "Este Funcionario ja possui um usuario vinculado!";
                     success = false;
@@ -56,6 +61,11 @@ namespace Tecman.Services.Implementation
                     break;
                 case -200:
                     message = "Cliente não encontrado!";
+                    success = false;
+                    result = genericObject;
+                    break;
+                case -201:
+                    message = "Cliente já cadastrado com esse CPF!";
                     success = false;
                     result = genericObject;
                     break;

@@ -41,7 +41,7 @@ namespace Tecman.Controllers
 
             Employee employee = _business.FindByCPF(employeeCreate.cpf);
 
-            if (employee != null) return BadRequest(_response.ResponseApi(-101,null));
+            if (employee != null) return BadRequest(_response.ResponseApi(-103, null));
 
             bool create = _business.Create(employeeCreate);
 

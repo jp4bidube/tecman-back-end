@@ -13,7 +13,7 @@ namespace Tecman.ValueObject.OrderServiceObjects
         public string? type { get; set; }
         public string? brand { get; set; }
         public string? model { get; set; }
-        public string? mounthsWarranty { get; set; }
+        public int? mounthsWarranty { get; set; }
         public DateTime? warrantyPeriod { get; set; }
         [JsonIgnore]    
         public virtual List<TechnicalVisit> visits { get; set; }
