@@ -162,7 +162,10 @@ namespace Tecman.Controllers
 
             ClientUnique client = _business.FindByCPF(clientCreate.cpf);
 
+
+            if(clientCreate.cpf != null) { 
             if (client != null) return BadRequest(_response.ResponseApi(-201, null));
+            }
 
             bool create = _business.Create(clientCreate);
 

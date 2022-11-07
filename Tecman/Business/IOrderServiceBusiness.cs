@@ -23,7 +23,7 @@ namespace Tecman.Business
 
         int CountListOrderService(String search);
 
-        int CountListOrderServiceByClient(string search);
+        int CountListOrderServiceByClient(string search, int clientId);
 
     }
 }

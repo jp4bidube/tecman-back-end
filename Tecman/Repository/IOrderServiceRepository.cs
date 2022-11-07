@@ -17,7 +17,7 @@ namespace Tecman.Repository
         bool UpdateOs(OrderService orderService);
         bool UpdateEquipment(Equipment equipment);
         public int CountListOrderService(string search);
-        public int CountListOrderServiceByClient(string search);
+        public int CountListOrderServiceByClient(string search, int clientId);
         List<OrderService> GetListOrderServiceOrderById(String sortDirection, int limit, int offset, String q);
         List<OrderService> GetListOrderServiceByEndereco(String sortDirection, int limit, int offset, String q);
         List<OrderService> GetListOrderServiceByTelefone(String sortDirection, int limit, int offset, String q);

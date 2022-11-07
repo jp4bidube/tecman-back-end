@@ -18,6 +18,7 @@ namespace Tecman.Repository
         List<Client> GetListClientOrderByEmail(String sortDirection, int limit, int offset, String q);
         List<Client> GetListClientOrderByNumber(String sortDirection, int limit, int offset, String q);
         List<Client> GetListClientOrderByCPF(String sortDirection, int limit, int offset, String q);
+        List<Client> GetListClientOrderByAddress(String sortDirection, int limit, int offset, String q);
         int CountListClient(String q);
         ClientAddress GetClientAddress(int clientId, int addressId);
 

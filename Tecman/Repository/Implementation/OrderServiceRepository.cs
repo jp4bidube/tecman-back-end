@@ -23,9 +23,9 @@ namespace Tecman.Repository.Implementation
             return _context.OrderService.Where(prop => prop.id.ToString().Contains(q) || prop.client.phoneNumber.ToUpper().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.street.ToUpper().Contains(q)).Count();
         }
 
-        public int CountListOrderServiceByClient(string q)
+        public int CountListOrderServiceByClient(string q, int clientId)
         {
-            return _context.OrderService.Where(prop => prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)).Count();
+            return _context.OrderService.Where(prop => (prop.id.ToString().Contains(q) || prop.orderServiceStatus.status.ToUpper().Contains(q) || prop.dateCreated.ToString().Contains(q)) && prop.client.id.Equals(clientId)).Count();
         }
 
 

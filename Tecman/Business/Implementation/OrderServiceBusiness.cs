@@ -71,9 +71,9 @@ namespace Tecman.Business.Implementation
 
         }
 
-        public int CountListOrderServiceByClient(string search)
+        public int CountListOrderServiceByClient(string search, int clientId)
         {
-            return _repository.CountListOrderServiceByClient(search);
+            return _repository.CountListOrderServiceByClient(search, clientId);
 
         }
 

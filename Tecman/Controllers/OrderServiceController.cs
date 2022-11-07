@@ -127,7 +127,7 @@ namespace Tecman.Controllers
             List<OrderService> OS = _business.GetListOrderServiceByClientId(order, limit, offset, search.ToUpper(), sort, clientId);
 
 
-            Response.Headers.Add("X-Total-Count", _business.CountListOrderServiceByClient(search.ToUpper()).ToString());
+            Response.Headers.Add("X-Total-Count", _business.CountListOrderServiceByClient(search.ToUpper(),clientId).ToString());
             return Ok(_response.ResponseApi(0, OS));
 
         }

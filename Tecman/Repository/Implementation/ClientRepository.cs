@@ -82,11 +82,11 @@ namespace Tecman.Repository.Implementation
             return _context.ClientAddress.FirstOrDefault(element => element.clientId.Equals(clientId) && element.address.id.Equals(addressId));
         }
 
-        public List<Client> GetListClientOrderByCPF(string sortDirection, int limit, int offset, string q)
+        public List<Client> GetListClientOrderByAddress(string sortDirection, int limit, int offset, string q)
         {
-            if (sortDirection == "desc")
+            if(sortDirection == "desc")
             {
-                List<Client> client = _context.Client.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q) || prop.id.Equals(_context.ClientAddress.FirstOrDefault(prop => prop.address.street.Contains(q) && prop.defaultAddress.Equals(true)).clientId))
                     .OrderByDescending(prop => prop.email)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -97,6 +97,28 @@ namespace Tecman.Repository.Implementation
             {
                 List<Client> client = _context.Client.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderBy(prop => prop.email)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return client;
+            }
+        }
+
+        public List<Client> GetListClientOrderByCPF(string sortDirection, int limit, int offset, string q)
+        {
+            if (sortDirection == "desc")
+            {
+                List<Client> client = _context.Client.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                    .OrderByDescending(prop => prop.cpf)
+                    .Skip((offset * limit))
+                    .Take(limit)
+                    .ToList();
+                return client;
+            }
+            else
+            {
+                List<Client> client = _context.Client.Where(prop => prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                    .OrderBy(prop => prop.cpf)
                     .Skip((offset * limit))
                     .Take(limit)
                     .ToList();

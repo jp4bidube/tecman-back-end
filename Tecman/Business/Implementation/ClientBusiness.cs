@@ -127,6 +127,9 @@ namespace Tecman.Business.Implementation
                 case "email":
                     return _repository.GetListClientOrderByEmail(sortDirection, limit, offset, search);
                     break;
+                case "address":
+                    return _repository.GetListClientOrderByAddress(sortDirection, limit, offset, search);
+                    break;
                 default:
                     return _repository.GetListClientOrderByName(sortDirection, limit, offset, search);
                     break;
