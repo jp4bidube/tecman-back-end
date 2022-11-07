@@ -25,5 +25,8 @@ namespace Tecman.Business
 
         int CountListOrderServiceByClient(string search, int clientId);
 
+        List<TechnicalVisit> getVisitWarrantyByEquipmentId(int equipmentId);
+
+        bool CreateVisit(VisitCreate visitCreate);
     }
 }

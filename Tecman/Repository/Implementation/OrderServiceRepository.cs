@@ -272,5 +272,26 @@ namespace Tecman.Repository.Implementation
             }
             return true;
         }
+
+        public List<TechnicalVisit> getVisitWarrantyByEquipmentId(int equipmentId)
+        {
+            return _context.TechnicalVisit.Where(prop => prop.Equipment.id.Equals(equipmentId)).OrderByDescending(prop => prop.dateVisit).ToList();
+        }
+
+        public bool CreateVisit(TechnicalVisit technicalVisit)
+        {
+            try
+            {
+                _context.Add(technicalVisit);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+
+            }
+        }
     }
 }

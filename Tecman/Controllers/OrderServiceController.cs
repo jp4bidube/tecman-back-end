@@ -142,13 +142,22 @@ namespace Tecman.Controllers
         [ProducesResponseType(401)]
         public async Task<IActionResult> GetEquipmentById(int equipmentId)
         {
-            // EquipmentUnique exist = _business.FindVisitEquipmentById(id);
 
-            //if (!exist) return BadRequest(_response.ResponseApi(-150, null));
+            return Ok(_response.ResponseApi(0, _business.getVisitWarrantyByEquipmentId(equipmentId)));
+        }
 
-            //return Ok(_response.ResponseApi(0, _business.FindById(id)));
+        [HttpPost]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("CreateVisit")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> CreateVisit(VisitCreate visitCreate)
+        {
 
-            return Ok();
+            return Ok(_response.ResponseApi(0, _business.CreateVisit(visitCreate)));
+
         }
     }
 }

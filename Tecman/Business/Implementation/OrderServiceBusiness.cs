@@ -126,6 +126,20 @@ namespace Tecman.Business.Implementation
             return os;
         }
 
+        public bool CreateVisit(VisitCreate visitCreate)
+        {
+            TechnicalVisit technicalVisit = new TechnicalVisit
+            {
+                clientePiece = visitCreate.clientePiece,
+                dateVisit = visitCreate.dateVisit,
+                Employee = _employee.FindById(visitCreate.employeeId),
+                Equipment = _repository.FindEquipmentById(visitCreate.equipmentId),
+                serviceExecuted = visitCreate.serviceExecuted
+            };
+
+            return _repository.CreateVisit(technicalVisit);
+        }
+
         public bool Find(int id)
         {
             if (_repository.FindById(id) == null) return false;
@@ -241,6 +255,11 @@ namespace Tecman.Business.Implementation
 
             }
 
+        }
+
+        public List<TechnicalVisit> getVisitWarrantyByEquipmentId(int equipmentId)
+        {
+            return _repository.getVisitWarrantyByEquipmentId(equipmentId);
         }
     }
 }

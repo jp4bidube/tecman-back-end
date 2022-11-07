@@ -17,6 +17,7 @@ namespace Tecman.Repository
         bool UpdateOs(OrderService orderService);
         bool UpdateEquipment(Equipment equipment);
         public int CountListOrderService(string search);
+        public List<TechnicalVisit> getVisitWarrantyByEquipmentId(int equipmentId);
         public int CountListOrderServiceByClient(string search, int clientId);
         List<OrderService> GetListOrderServiceOrderById(String sortDirection, int limit, int offset, String q);
         List<OrderService> GetListOrderServiceByEndereco(String sortDirection, int limit, int offset, String q);
@@ -26,6 +27,6 @@ namespace Tecman.Repository
         List<OrderService> GetListOrderServiceByClientIdOrderByStatus(string sortDirection, int limit, int offset, string q, int clientId);
         List<OrderService> GetListOrderServiceByClientIdOrderById(string sortDirection, int limit, int offset, string q, int clientId);
 
-
+        bool CreateVisit(TechnicalVisit technicalVisit);
     }
 }
