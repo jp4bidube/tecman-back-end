@@ -22,5 +22,8 @@ namespace Tecman.Models
         [Column("email")]
         public string? email { get; set; }
 
+        [Column("endereco")]
+        public string? district { get; set; }
+
     }
 }

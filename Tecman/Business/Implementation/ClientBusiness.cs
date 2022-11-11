@@ -67,6 +67,12 @@ namespace Tecman.Business.Implementation
 
             if (createclientAddress == null) return false;
 
+            if(createclientAddress.defaultAddress == true)
+            {
+                createClient.district = createAddress.district;
+                _repository.Update(createClient);
+            }
+
             return true;
         }
 
@@ -169,6 +175,11 @@ namespace Tecman.Business.Implementation
             bool updateNewClientAddress = _repository.UpdateClientAddress(oldClientAddress);
 
             if (updateNewClientAddress == false) return false;
+
+                Client cliente = _repository.FindById(clientAddress.clientId);
+                cliente.district = clientAddress.address.district;
+                _repository.Update(cliente);    
+            
 
             return true;
         }
