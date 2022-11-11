@@ -14,6 +14,7 @@ namespace Tecman.Business
 
         public OrderServiceUnique FindById(int id);
         public bool Find(int id);
+        public bool UpdateOS(OrderServicePutObject orderServicePutObject);
 
         public bool CompleteOrderService(OrderServiceComplete orderServiceComplete);
 

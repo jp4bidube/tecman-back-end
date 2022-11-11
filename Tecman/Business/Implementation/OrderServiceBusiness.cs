@@ -261,5 +261,47 @@ namespace Tecman.Business.Implementation
         {
             return _repository.getVisitWarrantyByEquipmentId(equipmentId);
         }
+
+        public bool UpdateOS(OrderServicePutObject orderServicePutObject)
+        {
+            OrderService os = _repository.FindById(orderServicePutObject.id);
+
+            if (os == null) return false;
+
+            os.number = orderServicePutObject.number;
+            os.observacao = orderServicePutObject.observacao;
+            os.pieceSold = orderServicePutObject.pieceSold;
+            os.serviceExecuted = orderServicePutObject.serviceExecuted;
+            os.street = orderServicePutObject.street;
+            os.tecnic = _employee.FindById(orderServicePutObject.tecnicId);
+            os.district = orderServicePutObject.district;
+            os.defect = orderServicePutObject.defect;
+            os.datePayment = orderServicePutObject.datePayment;
+            os.complement = orderServicePutObject.complement;
+            os.clientPiece = orderServicePutObject.clientPiece;
+            os.client = _client.FindById(orderServicePutObject.clientId);
+            os.cep = orderServicePutObject.cep;
+            os.budget = orderServicePutObject.budget;
+            os.amountReceived = orderServicePutObject.amountReceived;
+
+            bool update = _repository.UpdateOs(os);
+
+            if (!update) return false;
+
+            Equipment equipment = _repository.FindEquipmentById(orderServicePutObject.device.id);
+
+            if (equipment == null) return true;
+
+            equipment.brand = orderServicePutObject.device.brand;
+            equipment.equipment = orderServicePutObject.device.type;
+            equipment.model = orderServicePutObject.device.model;
+            equipment.warrantyPeriod = orderServicePutObject.device.warrantyPeriod;
+            equipment.mounthsWarranty = orderServicePutObject.device.mounthsWarranty;
+
+
+            bool updateEquip = _repository.UpdateEquipment(equipment);
+
+            return updateEquip;
+        }
     }
 }

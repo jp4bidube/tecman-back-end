@@ -111,6 +111,18 @@ namespace Tecman.Controllers
 
         }
 
+        [HttpPut]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> Put(OrderServicePutObject orderServicePutObject)
+        {
+          return Ok(_response.ResponseApi(0, _business.UpdateOS(orderServicePutObject)));
+        }
+
+
         [HttpGet]
         [Produces("application/json")]
         [Authorize("Bearer")]
