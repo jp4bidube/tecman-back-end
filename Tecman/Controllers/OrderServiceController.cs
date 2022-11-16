@@ -57,7 +57,7 @@ namespace Tecman.Controllers
 
         [HttpPatch]
         [Produces("application/json")]
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [Route("{id}")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
@@ -76,7 +76,7 @@ namespace Tecman.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [Route("{id}")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
@@ -93,7 +93,7 @@ namespace Tecman.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
@@ -113,7 +113,7 @@ namespace Tecman.Controllers
 
         [HttpPut]
         [Produces("application/json")]
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
         [ProducesResponseType(401)]
@@ -147,7 +147,7 @@ namespace Tecman.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [Route("equipment-warrant/{equipmentId}")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
@@ -160,7 +160,7 @@ namespace Tecman.Controllers
 
         [HttpPost]
         [Produces("application/json")]
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [Route("CreateVisit")]
         [ProducesResponseType((200), Type = typeof(ApiMessage))]
         [ProducesResponseType((400), Type = typeof(ApiMessage))]
