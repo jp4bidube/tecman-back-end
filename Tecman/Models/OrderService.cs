@@ -76,5 +76,8 @@ namespace Tecman.Models
         [Column("servico_executado")]
         public string? serviceExecuted { get; set; }
 
+        [Column("periodo_atendimento")]
+        public string? periodAttendance { get; set; }
+
     }
 }

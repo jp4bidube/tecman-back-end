@@ -17,6 +17,7 @@ namespace Tecman.ValueObject
         public string? number { get; set; }
         public string? district { get; set; }
         public string? complement { get; set; }
+        public string? periodAttendance { get; set; }
         public string? observacao { get; set; }
         public string? defect { get; set; }
         public EquipmentOSObject[]? devices { get; set; }

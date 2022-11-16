@@ -17,6 +17,7 @@ namespace Tecman.ValueObject.OrderServiceObjects
         public DateTime? datePayment { get; set; }
         public int clientId { get; set; }
         public string? street { get; set; }
+        public string? periodAttendance { get; set; }
         public string? cep { get; set; }
         public string? number { get; set; }
         public string? district { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tecman.Models
 {
-    [Table("aparelho")]
+    [Table("visita_garantia")]  
     public class TechnicalVisit
     {
         [Key]
