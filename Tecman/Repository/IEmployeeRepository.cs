@@ -21,6 +21,7 @@ namespace Tecman.Repository
 
         List<TecnicListSelect> ListTecnicSelect();
 
+        List<TenicInfoGrouped> getInfoOsByTecnic(int id);
 
         Employee Create(Employee employee);
         List<Employee> GetListEmployeeOrderByName(String sortDirection, int limit, int offset, String q);

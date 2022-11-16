@@ -132,6 +132,15 @@ namespace Tecman.Business.Implementation
                 role = employee.role,
                 user = _user.FindByEmployeeId(employee.id)
             };
+            
+            if(employee.role.role == "tecnico")
+            {
+                List<TenicInfoGrouped> status = _repository.getInfoOsByTecnic(employee.id);
+                employeeUnique.orderServicesCanceled = status[0].count;
+                employeeUnique.orderServicesBudget = status[1].count;
+                employeeUnique.orderServicesDone = status[2].count;
+                employeeUnique.orderServicesTotal = status[2].count + status[1].count + status[0].count;
+            }
 
             return employeeUnique;
         }
@@ -261,5 +270,11 @@ namespace Tecman.Business.Implementation
         {
            return _repository.ListTecnicSelect();
         }
+
+        public List<TenicInfoGrouped> getInfoOsByTecnic(int id)
+        {
+            return _repository.getInfoOsByTecnic(id);
+        }
+
     }
 }

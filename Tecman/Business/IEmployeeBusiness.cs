@@ -30,5 +30,8 @@ namespace Tecman.Business
         List<Employee> GetListEmployee(String sortDirection, int limit, int offset, String search, String sort);
         int CountListEmployee(String search);
         int CountListTecnic(String search);
+
+        public List<TenicInfoGrouped> getInfoOsByTecnic(int id);
+
     }
 }

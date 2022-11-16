@@ -21,5 +21,9 @@ namespace Tecman.ValueObject.EmployeeObjects
         public virtual EmployeeStatus employeeStatus { get; set; }
         public string? avatarUrl { get; set; }
         public virtual User user { get; set; }
+        public int? orderServicesTotal { get; set; }
+        public int? orderServicesDone { get; set; }
+        public int? orderServicesBudget { get; set; }
+        public int? orderServicesCanceled { get; set; }
     }
 }

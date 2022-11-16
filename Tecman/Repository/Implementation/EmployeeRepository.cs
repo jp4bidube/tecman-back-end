@@ -318,5 +318,25 @@ namespace Tecman.Repository.Implementation
         {
             return _context.Employee.Where(prop => prop.role.id == 4 && prop.employeeStatus.id == 1).Select(prop => new TecnicListSelect { id= prop.id, name = prop.name }).ToList();
         }
+
+
+        public List<TenicInfoGrouped> getInfoOsByTecnic(int id)
+        {
+            var data = DateTime.Now;
+            var datas = Enumerable.Range(1, DateTime.DaysInMonth(data.Year, data.Month))
+                    // Days: 1, 2 ... 31 etc.
+                    .Select(day => new DateTime(data.Year, data.Month, day))
+                    // Map each day to a date
+                    .ToList();
+
+            List<TenicInfoGrouped> OsGrouped = _context.OrderService.Where(prop => datas.First() <= prop.dateCreated && prop.tecnic.id.Equals(id))
+                                                  .ToList()
+                                                  .OrderBy(order => order.orderServiceStatus.status)
+                                                  .GroupBy(group => group.orderServiceStatus.status)
+                                                  .Select(select => new TenicInfoGrouped { name = select.Key, count = select.Count() })
+                                                  .ToList();
+
+            return OsGrouped;
+        }
     }
 }

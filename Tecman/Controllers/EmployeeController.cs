@@ -73,7 +73,7 @@ namespace Tecman.Controllers
         }
 
         [HttpGet]
-        [Authorize("Bearer")]
+        //[Authorize("Bearer")]
         [Route("{id}")]
         [Produces("application/json")]
         [ProducesResponseType((200), Type = typeof(Employee))]
@@ -129,6 +129,7 @@ namespace Tecman.Controllers
             return Ok(_response.ResponseApi(0, null));
 
         }
+
 
        
     }

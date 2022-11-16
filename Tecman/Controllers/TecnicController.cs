@@ -62,5 +62,17 @@ namespace Tecman.Controllers
             return Ok(_response.ResponseApi(0, _business.ListTecnicSelect()));
         }
 
+        [HttpGet]
+        [Produces("application/json")]
+        [Route("Teste")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> getInfoOsByTecnic()
+        {
+            return Ok(_response.ResponseApi(0, _business.getInfoOsByTecnic(3)));
+        }
+
+
     }
 }
