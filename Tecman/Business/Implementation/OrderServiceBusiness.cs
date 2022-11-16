@@ -95,7 +95,8 @@ namespace Tecman.Business.Implementation
                 dateCreated = DateTime.Now,
                 observacao = orderServiceCreate.observacao,
                 orderServiceStatus = _repository.OrderServiceStatusFindById(1),
-                device_qtd = orderServiceCreate.devices.Length.ToString(),     
+                device_qtd = orderServiceCreate.devices.Length.ToString(),
+                periodAttendance = orderServiceCreate.periodAttendance,     
                                 
             };
 
@@ -283,6 +284,7 @@ namespace Tecman.Business.Implementation
             os.cep = orderServicePutObject.cep;
             os.budget = orderServicePutObject.budget;
             os.amountReceived = orderServicePutObject.amountReceived;
+            os.periodAttendance = orderServicePutObject.periodAttendance;
 
             bool update = _repository.UpdateOs(os);
 
@@ -293,7 +295,7 @@ namespace Tecman.Business.Implementation
             if (equipment == null) return true;
 
             equipment.brand = orderServicePutObject.device.brand;
-            equipment.equipment = orderServicePutObject.device.type;
+            equipment.equipment = orderServicePutObject.device.type;    
             equipment.model = orderServicePutObject.device.model;
             equipment.warrantyPeriod = orderServicePutObject.device.warrantyPeriod;
             equipment.mounthsWarranty = orderServicePutObject.device.mounthsWarranty;
