@@ -35,6 +35,7 @@ namespace Tecman.ValueObject.OrderServiceObjects
         public bool? pieceSold { get; set; }
 
         public string? defect { get; set; }
+        public string? periodAttendance { get; set; }
 
         public bool? clientPiece { get; set; }
 
