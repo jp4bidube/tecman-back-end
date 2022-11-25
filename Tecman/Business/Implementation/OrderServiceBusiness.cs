@@ -178,6 +178,7 @@ namespace Tecman.Business.Implementation
                 pieceSold = order.pieceSold,
                 serviceExecuted = order.serviceExecuted,
                 street = order.street,
+                periodAttendance = order.periodAttendance,
                 Tecnic = new TecnicListSelect
                 {
                     id = order?.tecnic?.id,
