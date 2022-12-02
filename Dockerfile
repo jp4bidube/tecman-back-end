@@ -12,16 +12,16 @@ RUN dotnet dev-certs https -t
 RUN dotnet dev-certs https --check
 RUN dotnet dev-certs https --trust
 
-COPY ["DricWebSiteApi/DricWebSiteApi.csproj", "DricWebSiteApi/"]
-RUN dotnet restore "DricWebSiteApi/DricWebSiteApi.csproj"
+COPY ["Tecman/Tecman.csproj", "Tecman/"]
+RUN dotnet restore "Tecman/Tecman.csproj"
 COPY . .
-WORKDIR "/src/DricWebSiteApi"
-RUN dotnet build "DricWebSiteApi.csproj" -c Release -o /app/build
+WORKDIR "/src/Tecman"
+RUN dotnet build "Tecman.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DricWebSiteApi.csproj" -c Release -o /app/publish
+RUN dotnet publish "Tecman.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DricWebSiteApi.dll"]
+ENTRYPOINT ["dotnet", "Tecman.dll"]

@@ -31,7 +31,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "DricWebSiteApi/1.0.0": {
+      "Tecman/1.0.0": {
         "dependencies": {
           "EntityFramework": "6.4.4",
           "MailKit": "2.15.0",
@@ -336,10 +336,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "DricWebSiteApi.dll": {}
+          "Tecman.dll": {}
         },
         "compile": {
-          "DricWebSiteApi.dll": {}
+          "Tecman.dll": {}
         }
       },
       "Castle.Core/4.4.1": {
@@ -3769,7 +3769,7 @@
     }
   },
   "libraries": {
-    "DricWebSiteApi/1.0.0": {
+    "Tecman/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
