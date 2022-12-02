@@ -12,10 +12,10 @@ RUN dotnet dev-certs https -t
 RUN dotnet dev-certs https --check
 RUN dotnet dev-certs https --trust
 
-COPY ["Tecman/Tecman.csproj", "Tecman/"]
-RUN dotnet restore "Tecman/Tecman.csproj"
+COPY ["Tecman.csproj", "Tecman/"]
+RUN dotnet restore "Tecman.csproj"
 COPY . .
-WORKDIR "/src/Tecman"
+WORKDIR "./"
 RUN dotnet build "Tecman.csproj" -c Release -o /app/build
 
 FROM build AS publish
