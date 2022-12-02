@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KpbOt7FqPJBZnGTjdE45d8SBZ/bVr1deywc54dRHsIjfP1w4vSBeVxRi1q0NtcKlf8gvPLrQNo75hzMW1fkuug==",
+  "dgSpecHash": "ORVvcsTbENrXB3QdcwdtCndwRu97DuUHYEEVnaJBvahpPlaSsZv3Jr/nZuSnCqzVFg49Ud+XI2Y9AcYMY6W1tg==",
   "success": true,
-  "projectFilePath": "E:\\Tecman\\workspace\\backend\\Tecman.csproj",
+  "projectFilePath": "e:\\Tecman\\workspace\\backend\\Tecman.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joaop\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\joaop\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",

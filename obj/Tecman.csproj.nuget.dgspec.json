@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Tecman\\workspace\\backend\\Tecman.csproj": {}
+    "e:\\Tecman\\workspace\\backend\\Tecman.csproj": {}
   },
   "projects": {
-    "E:\\Tecman\\workspace\\backend\\Tecman.csproj": {
+    "e:\\Tecman\\workspace\\backend\\Tecman.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Tecman\\workspace\\backend\\Tecman.csproj",
+        "projectUniqueName": "e:\\Tecman\\workspace\\backend\\Tecman.csproj",
         "projectName": "Tecman",
-        "projectPath": "E:\\Tecman\\workspace\\backend\\Tecman.csproj",
+        "projectPath": "e:\\Tecman\\workspace\\backend\\Tecman.csproj",
         "packagesPath": "C:\\Users\\joaop\\.nuget\\packages\\",
-        "outputPath": "E:\\Tecman\\workspace\\backend\\obj\\",
+        "outputPath": "e:\\Tecman\\workspace\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "E:\\VisualStudio\\Shared\\NuGetPackages"
