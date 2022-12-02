@@ -136,10 +136,26 @@ namespace Tecman.Business.Implementation
             if(employee.role.role == "tecnico")
             {
                 List<TenicInfoGrouped> status = _repository.getInfoOsByTecnic(employee.id);
-                employeeUnique.orderServicesCanceled = status[0].count;
-                employeeUnique.orderServicesBudget = status[1].count;
-                employeeUnique.orderServicesDone = status[2].count;
-                employeeUnique.orderServicesTotal = status[2].count + status[1].count + status[0].count;
+                employeeUnique.orderServicesCanceled = 0;
+                employeeUnique.orderServicesBudget = 0;
+                employeeUnique.orderServicesDone = 0;
+
+                foreach (TenicInfoGrouped tenicInfoGrouped in status)
+                {
+                    if(tenicInfoGrouped.name == "Em orçamento")
+                    {
+                        employeeUnique.orderServicesBudget = tenicInfoGrouped.count;
+                    } else if (tenicInfoGrouped.name == "Realizada")
+                    {
+                        employeeUnique.orderServicesDone = tenicInfoGrouped.count;
+                    }else if(tenicInfoGrouped.name == "Cancelada")
+                    {
+                        employeeUnique.orderServicesCanceled = tenicInfoGrouped.count;
+                    }
+                }
+
+                employeeUnique.orderServicesTotal = employeeUnique.orderServicesCanceled + employeeUnique.orderServicesBudget + employeeUnique.orderServicesDone;
+
             }
 
             return employeeUnique;

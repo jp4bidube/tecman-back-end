@@ -301,7 +301,6 @@ C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\bin\Debug\net5.0\ref\Tecman.d
 C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\obj\Debug\net5.0\staticwebassets\Tecman.StaticWebAssets.xml
 C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.DynamicLinq.dll
 C:\Users\Daniel\Desktop\TECMAN\Codigo-Fonte\Tecman\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll
-C:\Users\danie\OneDrive\Área de Trabalho\TECMAN\Codigo-Fonte\Tecman\obj\Debug\net5.0\Tecman.csproj.AssemblyReference.cache
 C:\Users\danie\OneDrive\Área de Trabalho\TECMAN\Codigo-Fonte\Tecman\obj\Debug\net5.0\Tecman.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\danie\OneDrive\Área de Trabalho\TECMAN\Codigo-Fonte\Tecman\obj\Debug\net5.0\Tecman.AssemblyInfoInputs.cache
 C:\Users\danie\OneDrive\Área de Trabalho\TECMAN\Codigo-Fonte\Tecman\obj\Debug\net5.0\Tecman.AssemblyInfo.cs

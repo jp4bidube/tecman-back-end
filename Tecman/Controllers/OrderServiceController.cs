@@ -122,6 +122,18 @@ namespace Tecman.Controllers
           return Ok(_response.ResponseApi(0, _business.UpdateOS(orderServicePutObject)));
         }
 
+        [HttpPatch]
+        [Produces("application/json")]
+        [Authorize("Bearer")]
+        [Route("absence/{id}")]
+        [ProducesResponseType((200), Type = typeof(ApiMessage))]
+        [ProducesResponseType((400), Type = typeof(ApiMessage))]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> NotificationAbsence(int id , Absence absence)
+        {
+            return Ok(_response.ResponseApi(0, _business.NotificationAbsence(absence.date, id)));
+        }
+
 
         [HttpGet]
         [Produces("application/json")]

@@ -45,7 +45,7 @@ namespace Tecman.Controllers
             List<Employee> employee = _business.GetListTecnic(order, limit, offset, search.ToUpper(), sort);
 
 
-            Response.Headers.Add("X-Total-Count", _business.CountListEmployee(search.ToUpper()).ToString());
+            Response.Headers.Add("X-Total-Count", _business.CountListTecnic(search.ToUpper()).ToString());
             return Ok(_response.ResponseApi(0, employee));
 
         }

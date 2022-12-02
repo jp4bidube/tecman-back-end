@@ -15,6 +15,8 @@ namespace Tecman.ValueObject.OrderServiceObjects
         public decimal budget { get; set; }
         public decimal amountReceived { get; set; }
         public DateTime? datePayment { get; set; }
+        public DateTime? absence1 { get; set; }
+        public DateTime? absence2 { get; set; }
         public int clientId { get; set; }
         public string? street { get; set; }
         public string? periodAttendance { get; set; }

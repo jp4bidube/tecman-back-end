@@ -29,5 +29,7 @@ namespace Tecman.Business
         List<TechnicalVisit> getVisitWarrantyByEquipmentId(int equipmentId);
 
         bool CreateVisit(VisitCreate visitCreate);
+
+        bool NotificationAbsence(DateTime date, int osId);
     }
 }

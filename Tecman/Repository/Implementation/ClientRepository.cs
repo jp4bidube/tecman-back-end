@@ -88,8 +88,8 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
-                    .OrderByDescending(prop => prop.district)
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                    .OrderByDescending(prop => prop.street)
                     .Skip((offset * limit))
                     .Take(limit)
                     .ToList();
@@ -97,8 +97,8 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
-                    .OrderBy(prop => prop.district)
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                    .OrderBy(prop => prop.street)
                     .Skip((offset * limit))
                     .Take(limit)
                     .ToList();
@@ -110,7 +110,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderByDescending(prop => prop.cpf)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -119,7 +119,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderBy(prop => prop.cpf)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -132,7 +132,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderByDescending(prop => prop.email)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -141,7 +141,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderBy(prop => prop.email)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -154,7 +154,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderByDescending(prop => prop.name)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -163,7 +163,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderBy(prop => prop.name)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -176,7 +176,7 @@ namespace Tecman.Repository.Implementation
         {
             if (sortDirection == "desc")
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderByDescending(prop => prop.phoneNumber)
                     .Skip((offset * limit))
                     .Take(limit)
@@ -185,7 +185,7 @@ namespace Tecman.Repository.Implementation
             }
             else
             {
-                List<Client> client = _context.Client.Where(prop => prop.district.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
+                List<Client> client = _context.Client.Where(prop => prop.street.ToUpper().Contains(q) || prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.phoneNumber.ToUpper().Contains(q))
                     .OrderBy(prop => prop.phoneNumber)
                     .Skip((offset * limit))
                     .Take(limit)

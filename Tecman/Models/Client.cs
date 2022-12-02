@@ -23,7 +23,7 @@ namespace Tecman.Models
         public string? email { get; set; }
 
         [Column("endereco")]
-        public string? district { get; set; }
+        public string? street { get; set; }
 
     }
 }
