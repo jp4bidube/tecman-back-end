@@ -23,12 +23,12 @@ namespace Tecman
 
     public static IHostBuilder CreateHostBuilder(string[] args)
     {
-      var port = Environment.GetEnvironmentVariable("PORT");
+      string port = Environment.GetEnvironmentVariable("PORT");
       return Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder =>
         {
           webBuilder.UseStartup<Startup>();
-          webBuilder.UseUrls($"https://0.0.0.0:{port};http://localhost:5000");
+          webBuilder.UseUrls($"http://0.0.0.0:{port};http://localhost:5000");
         }
       );
     }
