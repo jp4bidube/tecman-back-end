@@ -28,7 +28,7 @@ namespace Tecman
     .ConfigureWebHostDefaults(webBuilder =>
         {
           webBuilder.UseStartup<Startup>();
-          webBuilder.UseUrls($"http://0.0.0.0:{port};http://localhost:5000");
+          webBuilder.UseUrls($"https://0.0.0.0:{port};http://localhost:5000");
         }
       );
     }
