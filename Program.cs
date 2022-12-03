@@ -18,12 +18,14 @@ namespace Tecman
   {
     public static void Main(string[] args)
     {
+      AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
       CreateHostBuilder(args).Build().Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args)
     {
       string port = Environment.GetEnvironmentVariable("PORT");
+
       return Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder =>
         {
