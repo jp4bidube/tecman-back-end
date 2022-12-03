@@ -1,3 +1,4 @@
+using System;
 /**
  * Created: 
  * Date: 
@@ -10,7 +11,6 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace Tecman
 {
@@ -26,11 +26,11 @@ namespace Tecman
       var port = Environment.GetEnvironmentVariable("PORT");
       return Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder =>
-    {
-      webBuilder.UseStartup<Startup>();
-      webBuilder.UseUrls($"http://0.0.0.0:{port};http://localhost:3000");
-    }
-);
+        {
+          webBuilder.UseStartup<Startup>();
+          webBuilder.UseUrls($"http://0.0.0.0:{port};http://localhost:5000");
+        }
+      );
     }
   }
 }
