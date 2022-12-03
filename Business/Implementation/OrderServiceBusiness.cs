@@ -264,6 +264,34 @@ namespace Tecman.Business.Implementation
             return _repository.getVisitWarrantyByEquipmentId(equipmentId);
         }
 
+        public bool NotificationAbsence(DateTime date, int osId)
+        {
+            OrderService os = _repository.FindById(osId);
+
+            if (os == null) return false;
+
+            if (os.absence1 == null)
+            {
+                os.absence1 = date;
+            } else if(os.absence2 == null)
+            {
+                os.absence2 = date;
+                if(os.absence1 != null && os.absence2 != null)
+                {
+                    os.orderServiceStatus = _repository.OrderServiceStatusFindById(3);
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            bool update = _repository.UpdateOs(os);
+
+            return update;
+
+        }
+
         public bool UpdateOS(OrderServicePutObject orderServicePutObject)
         {
             OrderService os = _repository.FindById(orderServicePutObject.id);
@@ -286,6 +314,8 @@ namespace Tecman.Business.Implementation
             os.budget = orderServicePutObject.budget;
             os.amountReceived = orderServicePutObject.amountReceived;
             os.periodAttendance = orderServicePutObject.periodAttendance;
+            os.absence1 = orderServicePutObject.absence1;
+            os.absence2 = orderServicePutObject.absence2;
 
             bool update = _repository.UpdateOs(os);
 

@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "http://localhost/DricWebSiteApi",
+      "applicationUrl": "http://localhost/Tecman",
       "sslPort": 0
     },
     "iisExpress": {
@@ -21,7 +21,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "DricWebSiteApi": {
+    "Tecman": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "http://localhost:5000/swagger/index.html",

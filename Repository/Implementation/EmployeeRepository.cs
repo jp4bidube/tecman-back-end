@@ -72,7 +72,7 @@ namespace Tecman.Repository.Implementation
             if (sortDirection == "desc")
             {
                 List<Employee> employee = _context.Employee.Where(prop => (prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q)) && prop.role.id != 4)
-                    .OrderByDescending(prop => prop.email)
+                    .OrderByDescending(prop => prop.cpf)
                     .Skip((offset * limit))
                     .Take(limit)
                     .ToList();
@@ -81,7 +81,7 @@ namespace Tecman.Repository.Implementation
             else
             {
                 List<Employee> employee = _context.Employee.Where(prop => (prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q)) && prop.role.id != 4)
-                    .OrderBy(prop => prop.email)
+                    .OrderBy(prop => prop.cpf)
                     .Skip((offset * limit))
                     .Take(limit)
                     .ToList();
@@ -94,7 +94,7 @@ namespace Tecman.Repository.Implementation
             if (sortDirection == "desc")
             {
                 List<Employee> employee = _context.Employee.Where(prop => (prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q)) && prop.role.id == 4)
-                    .OrderByDescending(prop => prop.email)
+                    .OrderByDescending(prop => prop.cpf)
                     .Skip((offset * limit))
                     .Take(limit)
                     .ToList();
@@ -103,7 +103,7 @@ namespace Tecman.Repository.Implementation
             else
             {
                 List<Employee> employee = _context.Employee.Where(prop => (prop.cpf.ToUpper().Contains(q) || prop.email.ToUpper().Contains(q) || prop.name.ToUpper().Contains(q) || prop.role.role.ToUpper().Contains(q) || prop.employeeStatus.status.ToUpper().Contains(q)) && prop.role.id == 4)
-                    .OrderBy(prop => prop.email)
+                    .OrderBy(prop => prop.cpf)
                     .Skip((offset * limit))
                     .Take(limit)
                     .ToList();

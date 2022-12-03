@@ -69,7 +69,7 @@ namespace Tecman.Business.Implementation
 
             if(createclientAddress.defaultAddress == true)
             {
-                createClient.district = createAddress.district;
+                createClient.street = createAddress.street;
                 _repository.Update(createClient);
             }
 
@@ -177,7 +177,7 @@ namespace Tecman.Business.Implementation
             if (updateNewClientAddress == false) return false;
 
                 Client cliente = _repository.FindById(clientAddress.clientId);
-                cliente.district = clientAddress.address.district;
+                cliente.street = clientAddress.address.street;
                 _repository.Update(cliente);    
             
 
